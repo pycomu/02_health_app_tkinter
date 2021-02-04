@@ -1,0 +1,164 @@
+Country,Life expectancy,BMI
+Afghanistan,52.8,2.062.058
+Albania,76.8,2.644.657
+Algeria,75.5,245.962
+Andorra,84.6,2.763.048
+Angola,56.7,2.225.083
+Armenia,72.3,2.535.542
+Australia,81.6,2.756.373
+Austria,80.4,2.646.741
+Azerbaijan,69.2,2.565.117
+Bahamas,72.2,2.724.594
+Bangladesh,68.3,2.039.742
+Barbados,75.3,2.638.439
+Belarus,70,2.616.443
+Belgium,79.6,2.675.915
+Belize,70.7,2.702.255
+Benin,59.7,2.241.835
+Bhutan,70.7,228.218
+Bolivia,71.2,2.443.335
+Bosnia and Herzegovina,77.5,2.661.163
+Botswana,53.2,2.212.984
+Brazil,73.2,2.578.623
+Bulgaria,73.2,2.654.286
+Burkina Faso,58,2.127.157
+Burundi,59.1,2.150.291
+Cambodia,66.1,2.080.496
+Cameroon,56.6,2.368.173
+Canada,80.8,274.521
+Cape Verde,70.4,2.351.522
+Chad,54.3,2.148.569
+Chile,78.5,2.701.542
+China,73.4,2.292.176
+Colombia,76.2,2.494.041
+Comoros,67.1,2.206.131
+"Congo, Dem. Rep.",57.5,1.986.692
+"Congo, Rep.",58.8,2.187.134
+Costa Rica,79.8,2.647.897
+Cote d'Ivoire,55.4,2.256.469
+Croatia,76.2,2.659.629
+Cuba,77.6,2.506.867
+Cyprus,80,2.741.899
+Denmark,78.9,2.613.287
+Djibouti,61.8,2.338.403
+Ecuador,74.7,2.558.841
+Egypt,70.2,2.673.243
+El Salvador,73.7,2.636.751
+Eritrea,60.1,2.088.509
+Estonia,74.2,2.626.446
+Ethiopia,60,20.247
+Fiji,64.9,2.653.078
+Finland,79.6,2.673.339
+France,81.1,2.585.329
+French Polynesia,75.11,3.086.752
+Gabon,61.7,240.762
+Gambia,65.7,2.165.029
+Georgia,71.8,2.554.942
+Germany,80,2.716.509
+Ghana,62,2.284.247
+Greece,80.2,2.633.786
+Greenland,70.3,2.601.359
+Grenada,70.8,2.517.988
+Guatemala,71.2,2.529.947
+Guinea,57.1,2.252.449
+Guinea-Bissau,53.6,2.164.338
+Guyana,65,2.368.465
+Haiti,61,2.366.302
+Honduras,71.8,2.510.872
+Hungary,73.9,2.711.568
+Iceland,82.4,2.720.687
+India,64.7,2.095.956
+Indonesia,69.4,2.185.576
+Iran,73.1,2.531.003
+Iraq,66.6,2.671.017
+Ireland,80.1,2.765.325
+Israel,80.6,2.713.151
+Jamaica,75.1,2.400.421
+Japan,82.5,2.350.004
+Jordan,76.9,2.747.362
+Kazakhstan,67.1,2.629.078
+Kenya,60.8,2.159.258
+Kuwait,77.3,2.917.211
+Latvia,72.4,2.645.693
+Lesotho,44.5,2.190.157
+Liberia,59.9,2.189.537
+Libya,75.6,2.654.164
+Lithuania,72.1,2.686.102
+Luxembourg,81,2.743.404
+"Macedonia, FYR",74.5,2.634.473
+Madagascar,62.2,2.140.347
+Malawi,52.4,2.203.468
+Malaysia,74.5,2.473.069
+Maldives,78.5,2.321.991
+Mali,58.5,2.178.881
+Malta,80.7,2.768.361
+Marshall Islands,65.3,2.937.337
+Mauritania,67.9,2.262.295
+Mauritius,72.9,2.515.669
+Mexico,75.4,2.742.468
+Moldova,70.4,242.369
+Mongolia,64.8,2.488.385
+Montenegro,76,2.655.412
+Morocco,73.3,2.563.182
+Mozambique,54,2.193.536
+Myanmar,59.4,2.144.932
+Namibia,59.1,2.265.008
+Nepal,68.4,2.076.344
+Netherlands,80.3,2.601.541
+Nicaragua,77,2.577.291
+Niger,58,2.121.958
+Nigeria,59.2,2.303.322
+Norway,80.8,2.693.424
+Oman,76.2,2.624.109
+Pakistan,64.1,2.229.914
+Panama,77.3,2.626.959
+Papua New Guinea,58.6,2.501.506
+Paraguay,74,2.554.223
+Peru,78.2,2.477.041
+Philippines,69.8,2.287.263
+Poland,75.4,266.738
+Portugal,79.4,2.668.445
+Qatar,77.9,2.813.138
+Romania,73.2,2.541.069
+Russia,67.9,2.601.131
+Rwanda,64.1,2.255.453
+Samoa,72.3,3.042.475
+Sao Tome and Principe,66,2.351.233
+Senegal,63.5,2.192.743
+Serbia,74.3,2.651.495
+Sierra Leone,53.6,2.253.139
+Singapore,80.6,2.383.996
+Slovak Republic,74.9,2.692.717
+Slovenia,78.7,2.743.983
+Somalia,52.6,2.196.917
+South Africa,53.4,2.685.538
+Spain,81.1,2.749.975
+Sri Lanka,74,2.196.671
+Sudan,65.5,2.240.484
+Suriname,70.2,2.549.887
+Swaziland,45.1,2.316.969
+Sweden,81.1,2.637.629
+Switzerland,82,2.620.195
+Syria,76.1,2.691.969
+Tajikistan,69.6,2.377.966
+Tanzania,60.4,2.247.792
+Thailand,73.9,2.300.803
+Timor-Leste,69.9,2.059.082
+Togo,57.5,2.187.875
+Tonga,70.3,3.099.563
+Trinidad and Tobago,71.7,2.639.669
+Tunisia,76.8,2.515.699
+Turkey,77.8,2.670.371
+Turkmenistan,67.2,2.524.796
+Uganda,56,2.235.833
+Ukraine,67.8,2.542.379
+United Arab Emirates,75.6,2.805.359
+United Kingdom,79.7,2.739.249
+United States,78.3,2.845.698
+Uruguay,76,2.639.123
+Uzbekistan,69.6,2.532.054
+Vanuatu,63.4,2.678.926
+West Bank and Gaza,74.1,265.775
+Vietnam,74.1,209.163
+Zambia,51.1,2.068.321
+Zimbabwe,47.3,220.266
