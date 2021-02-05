@@ -2,7 +2,7 @@
 # on https://www.youtube.com/watch?v=pd-0G0MigUA by Corey Schafer
 
 import sqlite3 # docu at https://sqlite.org/index.html
-from example sqlite employee import Employee
+from employee import Employee
 
 conn = sqlite3.connect(':memory:') # this :memory: is a database file in the memory - Usually with "anything.db" a database file "anything.db"
                                     # would be created every time we run the code, for no errors you need to delete this file again. The "in memory"
