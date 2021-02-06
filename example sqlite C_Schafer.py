@@ -55,7 +55,8 @@ def remove_emp(emp):
 # using the empolyee class to generate datasets
 emp_1 = Employee('John', 'Doe', 80000)
 emp_2 = Employee('Jane', 'Doe', 90000)
-
+print(emp_1)
+print(emp_2)
 insert_emp(emp_1)
 insert_emp(emp_2)
 
