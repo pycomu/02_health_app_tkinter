@@ -15,7 +15,7 @@ c.execute("""CREATE TABLE employees (
             last text,
             pay integer
             )""")
-# Expression Affinity and Declared Type
+# Expression Affinity and Declared Type see at https://www.sqlite.org/datatype3.html
 # TEXT 	"TEXT"
 # NUMERIC 	"NUM"
 # INTEGER 	"INT"
