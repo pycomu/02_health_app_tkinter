@@ -145,6 +145,8 @@ def input_value():
     btn=Button(window,text="BMI Generate",bg="orange",fg="red",command=calc_BMI() ,font=("Calibri",20))
     #bg and fg changing the background and foreground colour
 
+    # with "command=lambda:calc_BMI()" you execute the next function of Memoona
+
     btn.grid(row=9,column=0)
 
     bmi_label=Label(window,font=("Calibri",30))
