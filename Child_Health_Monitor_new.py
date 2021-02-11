@@ -1,20 +1,10 @@
-# metric mode (Kg, Pound) (cm, inch, feet)
-# Age in Years (later as dropdown list)
-# Weight in Kg
-# Height in Meter, for user in cm
-# Gender male, female, no say
-# BMI
-
-# https://www.healthhub.sg/live-healthy/745/differencesbetweenchildandadultbmi
-
-# https://www.indexmundi.com/blog/index.php/2013/04/11/body-mass-index-bmi-by-country/
-
 from tkinter import *
-import tkinter as tk
-# BMI_low == 18.5
-# BMI_up == 29.9
+# imports every exposed object in Tkinter 
+#Tkinter is the standard GUI library for Python.
 
-# ++++++++++++++++++++++++++ Shiji +++++++++++++++++++++++++++++++++++++++++++++++++
+def calc_BMI ():
+    pass
+
 def input_value():
     #creating basic Tkinter window
     window= Tk()
@@ -63,18 +53,17 @@ def input_value():
 
     gendertitle.grid(row=5, column=0)
     #grid uses the matrix row column concepts to organize the widgets
-
-    Gender= IntVar() 
+    
+    Gender= StringVar() 
     #value holder for integer variables
 
-    rad1= Radiobutton(window, text='Male', variable=Gender, value=1, font=("Calibri",20))
-    rad2= Radiobutton(window, text='Female', variable=Gender, value=2, font=("Calibri",20))
-    rad3= Radiobutton(window, text='No say', variable=Gender, value=3, font=("Calibri",20))
+    male= Radiobutton(window, text='Male', variable=Gender, value='male', font=("Calibri",20))
+    female= Radiobutton(window, text='Female', variable=Gender, value='female', font=("Calibri",20))
+    nosay= Radiobutton(window, text='No say', variable=Gender, value='nosay', font=("Calibri",20))
 
-    rad1.grid(column=1, row=5)
-    rad2.grid(column=2, row=5)
-    rad3.grid(column=3, row=5)
-
+    male.grid(column=1, row=5)
+    female.grid(column=2, row=5)
+    nosay.grid(column=3, row=5)
 
     #********************************************************
     #Height in Meter, for user in cm
@@ -84,7 +73,7 @@ def input_value():
     heightlabel=StringVar()
     #value holder for string variables
 
-    heightlabel.set("Height:")
+    heightlabel.set("Height in cm:")
     #set the variable to the VALUE
 
     heighttitle=Label(window, textvariable=heightlabel,bg="yellow",fg="green",font=("Calibri",20))
@@ -99,15 +88,6 @@ def input_value():
     height.grid(row=7, column=1)
 
 
-    rad4= Radiobutton(window, text='cm', variable=Height, value=4, font=("Calibri",20))
-    rad5= Radiobutton(window, text='Inch',variable=Height, value=5, font=("Calibri",20))
-    rad6= Radiobutton(window, text='Feet', variable=Height, value=6, font=("Calibri",20))
-
-    rad4.grid(column=2, row=7)
-    rad5.grid(column=3, row=7)
-    rad6.grid(column=4, row=7)
-
-
     #********************************************************
     #Weight in Kg
     #creating text label and input label
@@ -115,7 +95,7 @@ def input_value():
     weightlabel=StringVar()
     #value holder for string variables
 
-    weightlabel.set("Weight:")
+    weightlabel.set("Weight in Kg:")
     #set the variable to the VALUE
 
     weighttitle=Label(window, textvariable=weightlabel,bg="yellow",fg="green",font=("Calibri",20))
@@ -129,23 +109,13 @@ def input_value():
     weight= Entry(window)
     weight.grid(row=8, column=1)
 
-
-    rad7= Radiobutton(window, text='Kg', variable=Weight, value=7, font=("Calibri",20))
-    rad8= Radiobutton(window, text='Pound', variable=Weight, value=8, font=("Calibri",20))
-   
-
-    rad7.grid(column=2, row=8)
-    rad8.grid(column=3, row=8)
-    
     
     #***************************************************
     #BMI Generate
 
 
-    btn=Button(window,text="BMI Generate",bg="orange",fg="red",command=calc_BMI() ,font=("Calibri",20))
+    btn=Button(window,text="BMI Generate",bg="orange",fg="red",command=calc_BMI ,font=("Calibri",20))
     #bg and fg changing the background and foreground colour
-
-    # with "command=lambda:calc_BMI()" you execute the next function of Memoona
 
     btn.grid(row=9,column=0)
 
@@ -156,39 +126,4 @@ def input_value():
 
     window.mainloop()
 
-# Memoona
-def calc_BMI ():
-    # BMI = Weight/(Height**2)
-    # return BMI
-    pass
-
-# Deepa
-def output_result(BMIpercentile):
-    #print("\n")
-    #print(f'Your child BMI Percentile is - {BMIpercentile}')
-
-    if BMIpercentile < 8:
-        #print ("Your child is Underweight")
-        BMIResult = "Your child BMI Percentile is - " + str(BMIpercentile) + "."
-        BMIInference = "Your Child is Underweight"
-    elif BMIpercentile > 8 and BMIpercentile < 84:
-        print ("Your child is Healthy weight​​")
-    elif BMIpercentile > 85 and BMIpercentile < 95:
-        print ("Your child is Overweight")
-    elif BMIpercentile > 95:
-        print ("Your child is Obese")
-    else:
-        print ("Height and weight input is incorrect")
-
-    root = tk.Tk()
-    T = tk.Text(root, height=2, width=40)
-    T.pack()
-    T.insert(tk.END, BMIResult)
-    T.insert(tk.END,'\n')
-    T.insert(tk.END, BMIInference)
-    tk.mainloop()
-
-if __name__ == "__main__":
-
-    input_value()
-    output_result(5)
+input_value()
