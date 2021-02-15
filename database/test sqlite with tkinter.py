@@ -19,9 +19,9 @@ c.execute("""CREATE TABLE IF NOT EXISTS user (
 def store_sql(value_in):
     print(value_in)
     with conn:
-        c.execute("INSERT INTO user VALUES (?, ?)", (value_in))
+        c.execute("INSERT INTO user VALUES (?, ?)", (value_in.get()))
         # conn.commit() 
-         
+          
 
 def reg_mask():
     # window of input mask
@@ -31,19 +31,29 @@ def reg_mask():
     # label and entry fields
     name_label = tk.Label(root, text = "Your Name here:")
     name_label.grid(column=1, row=0)
-    user_name = tk.Entry(root, width = 30)
+    
+    name_text = tk.StringVar()
+    user_name = tk.Entry(root, textvariable=name_text, width = 30)
     user_name.grid(column=2, row=0)
+    
+    
     dateofbirth_label = tk.Label(root, text = "Your date of birth (YYYY-MM-DD):")
     dateofbirth_label.grid(column=1, row=1)
+    
     user_dateofbirth = tk.Entry(root, width = 30)
     user_dateofbirth.grid(column=2, row=1)
 
-    dataset = (user_name, user_dateofbirth)
+    
+    dataset = (user_name.get(), name_text.get(), user_dateofbirth.get())
     print(dataset)
 
     #register button
     reg_text = tk.StringVar()
-    reg_btn = tk.Button(root, textvariable=reg_text, command=lambda:store_sql(dataset), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
+    
+    # reg_btn = tk.Button(root, textvariable=reg_text, command=lambda:store_sql(dataset), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
+    
+    reg_btn = tk.Button(root, textvariable=reg_text, command=lambda:print(dataset), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
+    
     reg_text.set("Register")
     reg_btn.grid(column=2, row=3)
     
