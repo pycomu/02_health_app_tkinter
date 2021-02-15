@@ -1,6 +1,6 @@
 import sqlite3 
 
-conn = sqlite3.connect('bmi.db')
+conn = sqlite3.connect('./database/bmi.db')
 
 c = conn.cursor()
 
