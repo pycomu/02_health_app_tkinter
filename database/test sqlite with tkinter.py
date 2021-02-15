@@ -12,17 +12,11 @@ c.execute("""CREATE TABLE IF NOT EXISTS user (
             dateofbirth text
             )""")
 
-# def store_sql(value_in): # something wrong here
-#     with conn:
-#         c.execute("INSERT INTO user VALUES (:name, :weight, :height, :gender)", {'name':value_in.name, 'weight':value_in.weight, 'height':value_in.height, 'gender':value_in.gender})
-
-def store_sql(value_in):
-    print(value_in)
+def store_sql(*value_in): # can take more than on argument
     with conn:
-        c.execute("INSERT INTO user VALUES (?, ?)", (value_in.get()))
-        # conn.commit() 
-          
-
+        c.execute("INSERT INTO user VALUES (?, ?)", (value_in))
+        
+         
 def reg_mask():
     # window of input mask
     canvas = tk.Canvas(root, width=500, height=300)
@@ -32,10 +26,8 @@ def reg_mask():
     name_label = tk.Label(root, text = "Your Name here:")
     name_label.grid(column=1, row=0)
     
-    name_text = tk.StringVar()
-    user_name = tk.Entry(root, textvariable=name_text, width = 30)
-    user_name.grid(column=2, row=0)
-    
+    user_name = tk.Entry(root, width = 30)
+    user_name.grid(column=2, row=0)    
     
     dateofbirth_label = tk.Label(root, text = "Your date of birth (YYYY-MM-DD):")
     dateofbirth_label.grid(column=1, row=1)
@@ -43,16 +35,11 @@ def reg_mask():
     user_dateofbirth = tk.Entry(root, width = 30)
     user_dateofbirth.grid(column=2, row=1)
 
-    
-    dataset = (user_name.get(), name_text.get(), user_dateofbirth.get())
-    print(dataset)
-
     #register button
     reg_text = tk.StringVar()
     
-    # reg_btn = tk.Button(root, textvariable=reg_text, command=lambda:store_sql(dataset), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
-    
-    reg_btn = tk.Button(root, textvariable=reg_text, command=lambda:print(dataset), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
+    # .get() gives value of entry fields for sql operation
+    reg_btn = tk.Button(root, textvariable=reg_text, command=lambda:store_sql(user_name.get(), user_dateofbirth.get()), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
     
     reg_text.set("Register")
     reg_btn.grid(column=2, row=3)
