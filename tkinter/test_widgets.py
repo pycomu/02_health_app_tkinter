@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import *
 
 
 class Counter_program():
@@ -24,10 +25,11 @@ class Counter_program():
 
         
 
-        
+        var1 = StringVar()
+        var1.set(11)
         my_spin_label = ttk.Label(entry_frame, text="Select your age from 1 to max 16")
         my_spin_label.grid(row=1, column=1, sticky=tk.W + tk.N)
-        my_spinbox = tk.Spinbox(entry_frame, from_=1, to=16, width=5, justify=tk.RIGHT)
+        my_spinbox = tk.Spinbox(entry_frame, from_=1, to=16, textvariable = var1, width=5, justify=tk.RIGHT)
         my_spinbox.grid(row=1, column=2, sticky=tk.E, pady=3)
 
         my_scale_label = ttk.Label(entry_frame, text="Select the measured weight in full Kg")
@@ -40,9 +42,11 @@ class Counter_program():
         my_scale2 = tk.Scale(entry_frame, from_=0, to=9, orient=tk.HORIZONTAL, width=8, length=200)
         my_scale2.grid(row=3, column=2, sticky=tk.W)
 
+        var2 = StringVar()
+        var2.set(35)
         my_spin2_label = ttk.Label(entry_frame, text="Select your weight from 1 to max 60: (previous weight was)")
         my_spin2_label.grid(row=4, column=1, sticky=tk.W + tk.N)
-        my_spinbox2 = tk.Spinbox(entry_frame, from_=1, to=60, width=5, justify=tk.RIGHT)
+        my_spinbox2 = tk.Spinbox(entry_frame, from_=1, to=60, textvariable = var2, width=5, justify=tk.RIGHT)
         my_spinbox2.grid(row=4, column=2, sticky=tk.E, pady=3)
         
 
