@@ -43,10 +43,10 @@ class Counter_program():
         my_scale2.grid(row=3, column=2, sticky=tk.W)
 
         var2 = StringVar()
-        var2.set(35)
-        my_spin2_label = ttk.Label(entry_frame, text="Select your weight from 1 to max 60: (previous weight was)")
+        var2.set(157)
+        my_spin2_label = ttk.Label(entry_frame, text="Select your height from 1 to max 200 cm: (preset height)")
         my_spin2_label.grid(row=4, column=1, sticky=tk.W + tk.N)
-        my_spinbox2 = tk.Spinbox(entry_frame, from_=1, to=60, textvariable = var2, width=5, justify=tk.RIGHT)
+        my_spinbox2 = tk.Spinbox(entry_frame, from_=1, to=200, textvariable = var2, width=5, justify=tk.RIGHT)
         my_spinbox2.grid(row=4, column=2, sticky=tk.E, pady=3)
         
 
