@@ -7,7 +7,7 @@ c = conn.cursor()
 
 def create_database():
       
-   conn = sqlite3.connect ("bmi_memoona.db")
+   conn = sqlite3.connect ("./database/bmi_memoona.db")
    c = conn.cursor()
    c.execute('''CREATE TABLE IF NOT EXISTS login_info (userid integer primary key autoincrement,
                                                             username TEXT, password TEXT, date_of_birth INT,
