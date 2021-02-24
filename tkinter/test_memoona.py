@@ -61,7 +61,7 @@ def new_user():
     root.withdraw() # hiding root window
     reg_window = Toplevel(root) # ???? +++++++++++
     reg_window.geometry("600x600")
-    reg_window.title("Login Page")
+    reg_window.title("Registration Page")
 
     # Create labels------------------
     
