@@ -13,24 +13,26 @@ import pandas as pd
 from pandas import Series,DataFrame
 from PIL import Image, ImageTk
 
-# Global variables
-account_id   
-account_pin
-account_email_id
-child_id
-log_id  
+""" # Global variables along database structure
+"account_id"	INTEGER,
+"account_name"	VARCHAR(20),
+"account_email"	TEXT, or account_email_id
+"account_pin"	text,
 
-# other variables
-child_first_name
-child_last_name
-child_dob
-child_height
-child_weight
-child_age
-child_genderchild_BMI
-time_stamp
+"user_id"	INTEGER, or child_id
+"user_name"	VARCHAR(20), or child_first_name and child_last_name
+"user_gender"	TEXT,
+"user_dob"	INTEGER,or child_dob
+
+"log_id"	INTEGER, or log_id  
+"entry_time"	TIMESTAMP, or time_stamp
+"height"	FLOAT, or child_height
+"weight"	FLOAT, or child_weight
+"age"	INTEGER, or child_age
+"bmi"	FLOAT, or child_genderchild_BMI
 
 
+"""
 
 # functions
 def get_input():
