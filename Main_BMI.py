@@ -7,7 +7,9 @@
 
 # import the Libraries
 import tkinter as tk
-from tkinter import *import mysql.connectorimport pandas as pd
+from tkinter import *
+import mysql.connector
+import pandas as pd
 from pandas import Series,DataFrame
 from PIL import Image, ImageTk
 
