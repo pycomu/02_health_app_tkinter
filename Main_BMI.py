@@ -5,7 +5,7 @@
 # 4 open windows (UI) and perform data entries to be stored, changed in database
 # 5 switch on only relevant UI and focus for data manipulation
 
-# import the Libraries
+# import dependencies
 import tkinter as tk
 from tkinter import *
 import mysql.connector
@@ -14,6 +14,21 @@ from pandas import Series,DataFrame
 from PIL import Image, ImageTk
 
 """ # Global variables along database structure
+
+# +++++ pointers for status/position in database
+Account_id
+User_id
+Logfile_id
+
+# +++++ arrays to show content in comboboxes
+Account_name
+User name
+
+# ++++++ parameters to show in label or preset entrybox
+Last_weight
+Last_height
+etc.
+
 "account_id"	INTEGER,
 "account_name"	VARCHAR(20),
 "account_email"	TEXT, or account_email_id
@@ -33,6 +48,12 @@ from PIL import Image, ImageTk
 
 
 """
+def update_global_variables(): # read out all account names, user name, set pointers
+    pass
+
+# ++++++ functions for GUI, layout window and its different frames
+
+# ++++++ functions for database modifications e.g. insert data, delete data, update data
 
 # functions
 def get_input():
