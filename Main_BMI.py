@@ -17,7 +17,7 @@ from PIL import Image, ImageTk
 
 # +++++ pointers for status/position in database
 Account_id
-User_id
+Child_id
 Logfile_id
 
 # +++++ arrays to show content in comboboxes
@@ -30,21 +30,27 @@ Last_height
 etc.
 
 "account_id"	INTEGER,
-"account_name"	VARCHAR(20),
-"account_email"	TEXT, or account_email_id
-"account_pin"	text,
+"account_name"	TEXT,
+"account_pin"	INTEGER,
+"account_email"	TEXT,
+"account_create_date" TEXT,
 
-"user_id"	INTEGER, or child_id
-"user_name"	VARCHAR(20), or child_first_name and child_last_name
-"user_gender"	TEXT,
-"user_dob"	INTEGER,or child_dob
+"child_id"	INTEGER,
+"child_first_name"	TEXT,
+"child_last_name"	TEXT,
+"child_bday"	TEXT,
+"child_gender"	TEXT,
+"child_country"	TEXT,
+"child_create_date"	TEXT,
+"account_id"	INTEGER,
 
-"log_id"	INTEGER, or log_id  
-"entry_time"	TIMESTAMP, or time_stamp
-"height"	FLOAT, or child_height
-"weight"	FLOAT, or child_weight
-"age"	INTEGER, or child_age
-"bmi"	FLOAT, or child_genderchild_BMI
+"logfile_id"	integer,
+"logfile_timestamp"	TEXT,
+"logfile_weight"	REAL,
+"logfile_height"	REAL,
+"logfile_bmi"	REAL,
+"logfile_age_act"	REAL,
+"child_id"	INTEGER,
 
 
 """
