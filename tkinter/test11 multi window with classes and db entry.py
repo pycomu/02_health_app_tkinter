@@ -3,7 +3,7 @@ from tkinter import ttk
 
 import sqlite3 
 
-conn = sqlite3.connect("./experiment.db")
+conn = sqlite3.connect("./experiment11.db")
 c = conn.cursor()
 
 c.execute("""CREATE TABLE IF NOT EXISTS user ( 
@@ -72,7 +72,9 @@ class MainPage(tk.Frame):       # defining main page with nicer layout design us
         def store_sql(*value_in): # can take more than on argument
             with conn:
                 c.execute("INSERT INTO user VALUES (?)", (value_in))
-     
+            controller.show_frame(LoginPage) # switch to login page
+
+
 class LoginPage(tk.Frame):       # defining Login page with nicer layout design using ttk of tkinter
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
@@ -94,6 +96,7 @@ class LoginPage(tk.Frame):       # defining Login page with nicer layout design 
         def store_sql(*value_in): # can take more than on argument
             with conn: 
                 c.execute("INSERT INTO user VALUES (?)", (value_in))
+            controller.show_frame(MainPage) # switch to main page
 
 
 """ 
