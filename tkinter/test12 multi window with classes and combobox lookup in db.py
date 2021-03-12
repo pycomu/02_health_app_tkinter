@@ -25,6 +25,7 @@ class health_app(tk.Tk): # this is running any time and defining basic propertie
         # __init__ function for class Tk
         tk.Tk.__init__(self, *args, **kwargs)        
         self.wm_title("Child Health App") # Adding a title to the window
+        self.geometry("400x400")
         
         # creating a container with command Frame ++++++++++++ how to set geometry ?
         container = tk.Frame(self, height=800, width=800) 
