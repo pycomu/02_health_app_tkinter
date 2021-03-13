@@ -6,15 +6,6 @@ import sqlite3
 conn = sqlite3.connect("./experiment12.db")
 c = conn.cursor()
 
-# read out database for gloabl variables, pointers for db navigation and array list for tkinter comboboxes
-c.execute("select account_id, account_name from account")
-account_names =[]
-for row in c.fetchall():
-    print("Id: ", row[0])
-    print("Acc. Name: ", row[1])
-    account_names.append(row[1])
-print(account_names)
-no_account = False
 
 
 class health_app(tk.Tk): # this is running any time and defining basic properties of an UI screen
@@ -49,6 +40,19 @@ class health_app(tk.Tk): # this is running any time and defining basic propertie
         frame = self.frames[cont]
         frame.tkraise()
 
+
+    # read out database for gloabl variables, pointers for db navigation and array list for tkinter comboboxes
+    def update_combo(self):
+        c.execute("select account_id, account_name from account")
+        account_names =[]
+        for row in c.fetchall():
+            print("Id: ", row[0])
+            print("Acc. Name: ", row[1])
+            account_names.append(row[1])
+        print(account_names)
+        # no_account = False
+        return account_names
+
 class MainPage(tk.Frame):       # defining main page with nicer layout design using ttk of tkinter
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
@@ -66,7 +70,7 @@ class MainPage(tk.Frame):       # defining main page with nicer layout design us
 class LoginPage(tk.Frame):       # defining Login page with nicer layout design using ttk of tkinter
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
-         
+        
         label1 = ttk.Label(self, text ="Login Page",font="bold")        
         label1.grid(row = 0, column = 0, padx = 10, pady = 10) # putting the grid in its place by using grid
 
@@ -79,10 +83,11 @@ class LoginPage(tk.Frame):       # defining Login page with nicer layout design 
         def callbackFunc(event): 
             print("New Element Selected :",my_combobox.get())
 
-        self.combobox_value = tk.StringVar()
-        my_combobox = ttk.Combobox(self, height=4, width=10, textvariable=self.combobox_value)
+        self.combobox_value = tk.StringVar() # 
+        my_combobox = ttk.Combobox(self, height=4, width=10, textvariable=self.combobox_value,
+            postcommand=lambda: my_combobox.configure(values=controller.update_combo()))
         my_combobox.grid(row=2, column=0)
-        my_combobox['values'] = account_names
+        my_combobox['values'] = controller.update_combo() # name reading out the db table
         my_combobox.current(0)
         my_combobox.bind("<<ComboboxSelected>>", callbackFunc) # callback action whenever an item is selected
 
@@ -108,19 +113,15 @@ class LoginPage(tk.Frame):       # defining Login page with nicer layout design 
         button6 = ttk.Button(self, text="Test block login", command=lambda:button1.config(state="disabled"))
         button6.grid(column=2, row=4)
 
-        print(no_account)
-        if no_account == True:      # if global var no_account is True, then disable buttons like login, etc
-            button1.config(state="disabled")
+        # print(no_account)
+        # if no_account == True:      # if global var no_account is True, then disable buttons like login, etc
+        #     button1.config(state="disabled")
 
-        def store_sql(*value_in): # can take more than on argument
-            with conn: 
-                c.execute("INSERT INTO user VALUES (?)", (value_in))
-            controller.show_frame(MainPage) # switch to main page
-
+        
 class RegisterPage(tk.Frame):       # defining Login page with nicer layout design using ttk of tkinter
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
-         
+        
         label1 = ttk.Label(self, text ="Register Page",font="bold")        
         label1.grid(row = 0, column = 0, padx = 10, pady = 10)
 
@@ -136,16 +137,44 @@ class RegisterPage(tk.Frame):       # defining Login page with nicer layout desi
         Entry2 = ttk.Entry(self,width=10,show="*") # field entry for account PIN
         Entry2.grid(column=1, row=2)
 
-        button1 = ttk.Button(self, text="Submit", command=lambda: store_sql(txt_box.get()))
+        label4 = ttk.Label(self, text="email", font=("Arial Italic", 10))
+        label4.grid(column=0, row=3)
+        
+        label5 = ttk.Label(self, text="Re-Enter PIN", font=("Arial Italic", 10))
+        label5.grid(column=1, row=3)
+
+        Entry3 = ttk.Entry(self,width=10) # field entry for email
+        Entry3.grid(column=0, row=4)
+        
+        Entry4 = ttk.Entry(self,width=10,show="*") # field re-entry for account PIN
+        Entry4.grid(column=1, row=4)
+        # pushing submit collect all entries into a tuple and call the function to add new record in data table
+        button1 = ttk.Button(self, text="Submit", command=lambda: read_input(Entry1.get(), Entry2.get(), Entry3.get()))
         button1.grid(column=2, row=2)
 
         button5 = ttk.Button(self, text ="to main", command = lambda : controller.show_frame(MainPage)) 
-        button5.grid(row = 4, column = 1, padx = 10, pady = 10)    
-        
-        def store_sql(*value_in): # can take more than on argument
+        button5.grid(row = 5, column = 1, padx = 10, pady = 10) 
+
+           
+        """ table columns are:
+        "account_id"	INTEGER,
+        "account_name"	TEXT,
+        "account_pin"	INTEGER,
+        "account_email"	TEXT,
+        "account_create_date"	TEXT,
+    """
+        def read_input(*data): # printing to check value of tuple
+            account_names = controller.update_combo() # read out database for global variables, lengths of table column account_name
+            data = (len(account_names)+1,) + data +("10-03-2021",) # account_id here manually increased, date set manually
+            print(data)
+            print(type(data))
+            store_sql(data)
+
+
+        def store_sql(value_in): # can take more than on argument
             with conn: 
-                c.execute("INSERT INTO user VALUES (?)", (value_in))
-            controller.show_frame(MainPage) # switch to main page
+                c.execute("INSERT INTO account VALUES (?,?,?,?,?)", (value_in))
+            # controller.show_frame(MainPage) # switch to main page
 
 
 
