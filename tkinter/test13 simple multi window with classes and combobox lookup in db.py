@@ -5,7 +5,7 @@ from tkinter import ttk
 
 import sqlite3 
 
-conn = sqlite3.connect("./test frame sqlite combobox.db")
+conn = sqlite3.connect("./tkinter/test frame sqlite combobox.db")
 c = conn.cursor()
 
 class health_app(tk.Tk):    

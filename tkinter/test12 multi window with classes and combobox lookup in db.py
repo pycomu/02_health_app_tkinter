@@ -3,7 +3,7 @@ from tkinter import ttk
 
 import sqlite3 
 
-conn = sqlite3.connect("./experiment12.db")
+conn = sqlite3.connect("./tkinter/experiment12.db")
 c = conn.cursor()
 
 
