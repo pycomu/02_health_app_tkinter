@@ -1,6 +1,10 @@
 # import dependencies
+import os
+import shutil
+
 import tkinter as tk
 from tkinter import ttk
+from tkinter.filedialog import askdirectory
 # from tkcalendar import *
 # from tkcalendar import Calendar
 # import tkinter.messagebox
@@ -11,7 +15,7 @@ import pandas as pd
 from pandas import Series,DataFrame
 from PIL import Image, ImageTk
 
-conn = sqlite3.connect("./database/health_app.db")
+conn = sqlite3.connect("./health_app.db")
 c = conn.cursor()
 
 # Global variables along database structure - if required ?
@@ -57,19 +61,38 @@ class health_app(tk.Tk):
                 
         tk.Tk.__init__(self, *args, **kwargs)        
         self.wm_title("Health Tracker")
-        self.geometry("600x800")
-        
+        #setting window size
+        width=600
+        height=800
+        screenwidth = self.winfo_screenwidth()
+        screenheight = self.winfo_screenheight()
+        alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
+        self.geometry(alignstr)
+        self.resizable(width=False, height=False)
+                
         container = tk.Frame(self) 
         container.pack(side = "top", fill = "both", expand = True) 
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
         
         self.frames = {}  
-        for F in (LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of 2 frames
+        for F in (LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of all frames
             frame = F(container, self)  
             self.frames[F] = frame
-            frame.grid(row = 0, column = 0, sticky ="nsew") # each frame has the same grid parameters for layout
+            # label = ttk.Label(self, text ="x")
+            # rows = 4
+            # columns = 10
+            # print(rows, columns, height, width)
+            # for rows in range(height):
+            #     frame.rowconfigure(rows, weight=1)
+            #     for columns in range(width):
+            #         frame.columnconfigure(columns, weight=1) 
+            #         frame.Label(F, text='R%s/C%s'%(rows,columns), borderwidth=1 ).grid(row=rows,column=columns) # can be deleted
             
+            frame.grid(row = 0, column = 0, sticky ="nsew") # each frame has the same grid parameters for layout
+        
+            
+
         self.show_frame(LoginPage)
   
     def show_frame(self, cont):
@@ -96,7 +119,8 @@ class LoginPage(tk.Frame):
         button3 = ttk.Button(self, text ="Import", command = lambda : controller.show_frame(Import))
         button3.grid(row = 3, column = 3, padx = 10, pady = 10)
 
-        button4 = ttk.Button(self, text ="Export", command = lambda : controller.show_frame(Export))
+        button4 = ttk.Button(self, text ="Export", command = lambda : controller.show_frame(LoginPage)) # not for pdf, for database export
+        # button4 = ttk.Button(self, text ="Export", command = lambda : ChartPage.export_pdf(self))  # test for class of "ChartPage"      
         button4.grid(row = 3, column = 4, padx = 10, pady = 10)
 
         label1 = ttk.Label(self, text="PIN (4 digits)", font=("Arial Italic", 10))
@@ -234,9 +258,28 @@ class ChartPage(tk.Frame):
 
         button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
-        button = ttk.Button (self, text="Export") # go to export page
-        button.grid(column=1, row=5)
         
+        button = ttk.Button (self, text="Export PdF Report", command = lambda : self.export_pdf())
+        button.grid(column=1, row=6)
+
+    def export_pdf(self): # by this that function can be called even outside that class by <class.function>
+        
+        # the pdf report must be created inside app and stored in specific folder ! ++++++++ open
+        pdf_file = "/BMI_report_child_date.pdf" # could include name of child account ?
+        pdf_source = os.path.realpath(os.getcwd()) + pdf_file # get working directory -> later from specific folder
+        print("Source ", pdf_source) # to be deleted
+            
+        file = askdirectory() # ask user for folder to store(copy) pdf report; user can then use email to send away
+        if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
+            print("new dir ",file) # to be deleted
+            pdf_destination = file + pdf_file
+            print("Destination ", pdf_destination) # to be deleted
+                
+            shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
+
+
+    
+
 
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
 
