@@ -177,9 +177,10 @@ class ChildPage(tk.Frame):
         label.grid(row = 0, column = 1, padx = 10, pady = 10)
 
         button1 = ttk.Button(self, text ="Close", command = lambda : controller.show_frame(MainPage)) 
-        button1.grid(row = 5, column = 1, padx = 10, pady = 10)
+        button1.grid(row = 10, column = 1, padx = 10, pady = 10)
 
         #********************************************************************************************
+        """
         child_bday = ""
         current_date = ""
         Days = ""
@@ -187,6 +188,13 @@ class ChildPage(tk.Frame):
         Months = ""
         child_gender = ""
         """
+        child_bday = tk.StringVar()
+        current_date = tk.StringVar()
+        Days = tk.StringVar()
+        child_age = tk.StringVar()
+        Months = tk.StringVar()
+        child_gender = tk.StringVar()
+        
         def Reset():
             child_bday.set("") 
             current_date.set("")  
@@ -196,7 +204,7 @@ class ChildPage(tk.Frame):
             child_gender.set("")
             Ent_child_first_name.delete(0, END)
             Ent_child_last_name.delete(0, END)
-        """
+        
         def iExit():
             iExit =tkinter.messagebox.askyesno("User Registration", "Confirm if you want to Exit")
             if iExit>=0:
@@ -244,17 +252,17 @@ class ChildPage(tk.Frame):
         lbl_child_gender.grid(row=7, column=0, padx=5)
 
         #the variable 'var' mentioned here holds Integer Value, by deault 0
-        var=IntVar()
+        var=tk.IntVar()
         #this creates 'Radio button' widget and uses place() method
         ttk.Radiobutton(self,justify='left', text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
         ttk.Radiobutton(self,justify='left', text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
 
         btnCalculate = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Calculate", bg='cadetblue',command=Results)
         btnCalculate.grid(row=9, column=0,padx=10,pady=2)
-        """
+        
         btnReset = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Reset", bg='cadetblue',command=Reset)
         btnReset.grid(row=9, column=1,padx=10,pady=2)
-        """
+        
         btnExit = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Exit", bg='cadetblue', command=iExit)
         btnExit.grid(row=9, column=2,padx=10,pady=2)
 
