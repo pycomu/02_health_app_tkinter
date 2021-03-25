@@ -5,20 +5,16 @@ import shutil
 import tkinter as tk
 from tkinter import ttk
 from tkinter.filedialog import askdirectory
-# from tkcalendar import *
-# from tkcalendar import Calendar
-# import tkinter.messagebox
-#from tkcalendar import Calendar, DateEntry
+from tkcalendar import *
+import tkcalendar
+from tkcalendar import Calendar
+import tkinter.messagebox
+from tkcalendar import Calendar, DateEntry
 import sqlite3
 
-#import pandas as pd
-#from pandas import Series,DataFrame
-#from PIL import Image, ImageTk
-
-from tkinter import *
-import tkcalendar
-from tkcalendar import Calendar, DateEntry
-import tkinter.messagebox
+import pandas as pd
+from pandas import Series,DataFrame
+from PIL import Image, ImageTk
 
 conn = sqlite3.connect("./health_app.db")
 c = conn.cursor()
@@ -176,32 +172,20 @@ class RegisterPage(tk.Frame):
 class ChildPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
         tk.Frame.__init__(self, parent)
-        """
+    
         label = ttk.Label(self, text ="Child Registration Page", font="bold")        
         label.grid(row = 0, column = 1, padx = 10, pady = 10)
 
         button1 = ttk.Button(self, text ="Close", command = lambda : controller.show_frame(MainPage)) 
         button1.grid(row = 5, column = 1, padx = 10, pady = 10)
-        """
-        #Creating object 'root' of Tk()
-        #root = Tk()
-        #Providing Geometry to the form
-        #root.geometry("900x400")
-
-        #Providing title to the form
-        self.title('User Information')
-
-        #this creates 'Label' widget for User Information and uses place() method.
-        label_0 =Label(self,text="User Information", width=15,font=("bold",20))
-        label_0.grid(row=0,column=1)
 
         #********************************************************************************************
-        child_bday = StringVar()
-        current_date = StringVar()
-        Days = StringVar()
-        child_age = StringVar()
-        Months = StringVar()
-        child_gender = StringVar()
+        child_bday = ""
+        current_date = ""
+        Days = ""
+        child_age = ""
+        Months = ""
+        child_gender = ""
 
         def Reset():
             child_bday.set("") 
@@ -216,7 +200,7 @@ class ChildPage(tk.Frame):
         def iExit():
             iExit =tkinter.messagebox.askyesno("User Registration", "Confirm if you want to Exit")
             if iExit>=0:
-                root.destroy()
+                self.destroy()
                 return
         
 
@@ -231,33 +215,33 @@ class ChildPage(tk.Frame):
             Agess = (Age/365)
             child_age .set(str('%.1f'%(Agess)))
 
-        child_first_name = Label(self, font=("arial", 10, 'bold'), text="child_first_name", bd=7, anchor='w', justify=LEFT)
+        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'), text="child_first_name", bd=7, anchor='w')
         child_first_name.grid(row=1, column=0, sticky= W, padx=5)
-        Ent_child_first_name = Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify=LEFT)
+        Ent_child_first_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify=LEFT)
         Ent_child_first_name .grid(row=1, column=1)
 
-        lbl_child_last_name= Label(self, font=("arial", 10, 'bold'), text="child_last_name", bd=7, anchor='w', justify=LEFT)
+        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'), text="child_last_name", bd=7, anchor='w')
         lbl_child_last_name.grid(row=2, column=0, sticky= W, padx=5)
-        Ent_child_last_name = Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify=LEFT)
+        Ent_child_last_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify=LEFT)
         Ent_child_last_name.grid(row=2, column=1)
 
-        lbl_child_bday= Label(self, font=("arial", 10, 'bold'), text="child_bday", bd=7, anchor='w', justify=LEFT)
-        lbl_child_bday.grid(row=3, column=0, sticky= W, padx=5)
+        lbl_child_bday= ttk.Label(self, font=("arial", 10, 'bold'), text="child_bday", bd=7)
+        lbl_child_bday.grid(row=3, column=0, padx=5)
         Ent_child_bday = DateEntry(self, font=("arial", 10, 'bold'), bd=5, width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
         Ent_child_bday.grid(row=3, column=1)
 
-        lbl_current_date= Label(self, font=("arial", 10, 'bold'), text="current_date", bd=7, anchor='w', justify=LEFT)
-        lbl_current_date.grid(row=4, column=0, sticky= W, padx=5)
+        lbl_current_date= ttk.Label(self, font=("arial", 10, 'bold'), text="current_date", bd=7)
+        lbl_current_date.grid(row=4, column=0, padx=5)
         Ent_current_date = DateEntry(self, font=("arial", 10, 'bold'), bd=5, width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
         Ent_current_date.grid(row=4, column=1)
 
-        lbl_child_age= Label(self, font=("arial", 10, 'bold'), text="child_age", bd=7, anchor='w', justify=LEFT)
-        lbl_child_age.grid(row=6, column=0, sticky= W, padx=5)
+        lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age", bd=7)
+        lbl_child_age.grid(row=6, column=0,  padx=5)
         Ent_child_age = Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify='left', textvariable=child_age)
         Ent_child_age.grid(row=6, column=1)
 
-        lbl_child_gender= Label(self, font=("arial", 10, 'bold'), text="child_gender", bd=7, anchor='w', justify=LEFT)
-        lbl_child_gender.grid(row=7, column=0, sticky= W, padx=5)
+        lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), text="child_gender", bd=7)
+        lbl_child_gender.grid(row=7, column=0, padx=5)
 
         #the variable 'var' mentioned here holds Integer Value, by deault 0
         var=IntVar()
@@ -265,17 +249,16 @@ class ChildPage(tk.Frame):
         Radiobutton(self,justify='left', text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
         Radiobutton(self,justify='left', text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
 
-        btnCalculate = Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Calculate", bg='cadetblue',command=Results)
+        btnCalculate = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Calculate", bg='cadetblue',command=Results)
         btnCalculate.grid(row=9, column=0,padx=10,pady=2)
 
-        btnReset = Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Reset", bg='cadetblue',command=Reset)
+        btnReset = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Reset", bg='cadetblue',command=Reset)
         btnReset.grid(row=9, column=1,padx=10,pady=2)
 
-        btnExit = Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Exit", bg='cadetblue', command=iExit)
+        btnExit = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Exit", bg='cadetblue', command=iExit)
         btnExit.grid(row=9, column=2,padx=10,pady=2)
 
-        root.mainloop()
-        #user_registration()
+        #self.mainloop()
 
 class MainPage(tk.Frame):      
     def __init__(self, parent, controller): 
