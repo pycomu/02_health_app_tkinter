@@ -103,6 +103,22 @@ class health_app(tk.Tk):
     # read out database for gloabl variables, pointers for db navigation and array list for tkinter comboboxes
     def update_combo(self):
         pass
+    
+    #validate the numeirc field - Datatype and Length
+    def validatePIN(self,P):
+         
+         if len(P) == 0 or len(P) <= 4 and P.isdigit():  # 4 characters
+            return True
+         else:
+            return False
+
+    #validate the string field - Datatype and Length
+    def validateString(self,P):
+        
+         if len(P) == 0 or len(P) <= 10 and P.isalpha():  # 10 characters
+            return True
+         else:
+            return False
 
 class LoginPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
@@ -126,10 +142,12 @@ class LoginPage(tk.Frame):
 
         label1 = ttk.Label(self, text="PIN (4 digits)", font=("Arial Italic", 10))
         label1.grid(row=4, column=1)
-
-        Entry1 = ttk.Entry(self,width=10, show="*")  # field entry for PIN
+      
+        Entry1 = ttk.Entry(self,width=10, show="*",validate="key")
+        Entry1['validatecommand'] = (Entry1.register(controller.validatePIN),'%P')
         Entry1.grid(row=4, column=2)
 
+   
         
 class RegisterPage(tk.Frame):       
     def __init__(self, parent, controller): 
@@ -154,13 +172,19 @@ class RegisterPage(tk.Frame):
         Entry1 = ttk.Entry(self,width=10) # field entry for account E-Mail
         Entry1.grid(row=1, column=2)
         
-        Entry2 = ttk.Entry(self,width=10) # field entry for account Name
+        Entry2 = ttk.Entry(self,width=10, show="*",validate="key") # Account Name
+        Entry2['validatecommand'] = (Entry2.register(controller.validateString),'%P')
         Entry2.grid(row=2, column=2)
+        label2 = ttk.Label(self, text="* Enter only 10 charecters",foreground='red', font=("Arial Italic", 10))
+        
+        label2.grid(row=2,column=3)
 
-        Entry3 = ttk.Entry(self,width=10,show="*") # field entry for PIN
+        Entry3 = ttk.Entry(self,width=10, show="*",validate="key") # PIN
+        Entry3['validatecommand'] = (Entry3.register(controller.validatePIN),'%P')
         Entry3.grid(row=3, column=2)
 
-        Entry4 = ttk.Entry(self,width=10,show="*") # field entry for PIN
+        Entry4 = ttk.Entry(self,width=10, show="*",validate="key") # Re enter PIN
+        Entry4['validatecommand'] = (Entry4.register(controller.validatePIN),'%P')
         Entry4.grid(row=4, column=2)
 
         button1 = ttk.Button(self, text ="Submit", command = lambda : controller.show_frame(LoginPage)) 
