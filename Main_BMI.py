@@ -186,7 +186,7 @@ class ChildPage(tk.Frame):
         child_age = ""
         Months = ""
         child_gender = ""
-
+        """
         def Reset():
             child_bday.set("") 
             current_date.set("")  
@@ -196,7 +196,7 @@ class ChildPage(tk.Frame):
             child_gender.set("")
             Ent_child_first_name.delete(0, END)
             Ent_child_last_name.delete(0, END)
-
+        """
         def iExit():
             iExit =tkinter.messagebox.askyesno("User Registration", "Confirm if you want to Exit")
             if iExit>=0:
@@ -215,14 +215,14 @@ class ChildPage(tk.Frame):
             Agess = (Age/365)
             child_age .set(str('%.1f'%(Agess)))
 
-        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'), text="child_first_name", bd=7, anchor='w')
-        child_first_name.grid(row=1, column=0, sticky= W, padx=5)
-        Ent_child_first_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify=LEFT)
+        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'), text="child_first_name", bd=7)
+        child_first_name.grid(row=1, column=0,padx=5)
+        Ent_child_first_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44)
         Ent_child_first_name .grid(row=1, column=1)
 
-        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'), text="child_last_name", bd=7, anchor='w')
-        lbl_child_last_name.grid(row=2, column=0, sticky= W, padx=5)
-        Ent_child_last_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify=LEFT)
+        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'), text="child_last_name", bd=7)
+        lbl_child_last_name.grid(row=2, column=0,padx=5)
+        Ent_child_last_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44)
         Ent_child_last_name.grid(row=2, column=1)
 
         lbl_child_bday= ttk.Label(self, font=("arial", 10, 'bold'), text="child_bday", bd=7)
@@ -251,10 +251,10 @@ class ChildPage(tk.Frame):
 
         btnCalculate = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Calculate", bg='cadetblue',command=Results)
         btnCalculate.grid(row=9, column=0,padx=10,pady=2)
-
+        """
         btnReset = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Reset", bg='cadetblue',command=Reset)
         btnReset.grid(row=9, column=1,padx=10,pady=2)
-
+        """
         btnExit = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Exit", bg='cadetblue', command=iExit)
         btnExit.grid(row=9, column=2,padx=10,pady=2)
 
