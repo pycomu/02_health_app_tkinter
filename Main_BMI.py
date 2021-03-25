@@ -223,37 +223,36 @@ class ChildPage(tk.Frame):
             Agess = (Age/365)
             child_age .set(str('%.1f'%(Agess)))
 
-        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'), text="child_first_name", bd=7)
+        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'), text="child_first_name")
         child_first_name.grid(row=1, column=0,padx=5)
-        Ent_child_first_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44)
+        Ent_child_first_name = ttk.Entry(self, font=("arial", 10, 'bold'), width=44)
         Ent_child_first_name .grid(row=1, column=1)
 
-        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'), text="child_last_name", bd=7)
+        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'), text="child_last_name")
         lbl_child_last_name.grid(row=2, column=0,padx=5)
-        Ent_child_last_name = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44)
+        Ent_child_last_name = ttk.Entry(self, font=("arial", 10, 'bold'), width=44)
         Ent_child_last_name.grid(row=2, column=1)
 
-        lbl_child_bday= ttk.Label(self, font=("arial", 10, 'bold'), text="child_bday", bd=7)
+        lbl_child_bday= ttk.Label(self, font=("arial", 10, 'bold'), text="child_bday")
         lbl_child_bday.grid(row=3, column=0, padx=5)
-        Ent_child_bday = DateEntry(self, font=("arial", 10, 'bold'), bd=5, width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
+        Ent_child_bday = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
         Ent_child_bday.grid(row=3, column=1)
 
-        lbl_current_date= ttk.Label(self, font=("arial", 10, 'bold'), text="current_date", bd=7)
+        lbl_current_date= ttk.Label(self, font=("arial", 10, 'bold'), text="current_date")
         lbl_current_date.grid(row=4, column=0, padx=5)
-        Ent_current_date = DateEntry(self, font=("arial", 10, 'bold'), bd=5, width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
+        Ent_current_date = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
         Ent_current_date.grid(row=4, column=1)
 
-        lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age", bd=7)
+        lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age")
         lbl_child_age.grid(row=6, column=0,  padx=5)
-        Ent_child_age = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify='left', textvariable=child_age)
+        Ent_child_age = ttk.Entry(self, font=("arial", 10, 'bold'), width=44, justify='left', textvariable=child_age)
         Ent_child_age.grid(row=6, column=1)
 
-        lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), text="child_gender", bd=7)
+        lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), text="child_gender")
         lbl_child_gender.grid(row=7, column=0, padx=5)
 
         #the variable 'var' mentioned here holds Integer Value, by deault 0
         var=tk.IntVar()
-        #this creates 'Radio button' widget and uses place() method
         ttk.Radiobutton(self,justify='left', text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
         ttk.Radiobutton(self,justify='left', text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
 
@@ -265,8 +264,6 @@ class ChildPage(tk.Frame):
         
         btnExit = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Exit", bg='cadetblue', command=iExit)
         btnExit.grid(row=9, column=2,padx=10,pady=2)
-
-        #self.mainloop()
 
 class MainPage(tk.Frame):      
     def __init__(self, parent, controller): 
