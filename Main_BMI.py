@@ -237,7 +237,7 @@ class ChildPage(tk.Frame):
 
         lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age", bd=7)
         lbl_child_age.grid(row=6, column=0,  padx=5)
-        Ent_child_age = Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify='left', textvariable=child_age)
+        Ent_child_age = ttk.Entry(self, font=("arial", 10, 'bold'), bd=5, width=44, justify='left', textvariable=child_age)
         Ent_child_age.grid(row=6, column=1)
 
         lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), text="child_gender", bd=7)
@@ -246,8 +246,8 @@ class ChildPage(tk.Frame):
         #the variable 'var' mentioned here holds Integer Value, by deault 0
         var=IntVar()
         #this creates 'Radio button' widget and uses place() method
-        Radiobutton(self,justify='left', text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
-        Radiobutton(self,justify='left', text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
+        ttk.Radiobutton(self,justify='left', text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
+        ttk.Radiobutton(self,justify='left', text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
 
         btnCalculate = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Calculate", bg='cadetblue',command=Results)
         btnCalculate.grid(row=9, column=0,padx=10,pady=2)
@@ -357,9 +357,6 @@ class ChartPage(tk.Frame):
             print("Destination ", pdf_destination) # to be deleted
                 
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
-
-
-    
 
 
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
