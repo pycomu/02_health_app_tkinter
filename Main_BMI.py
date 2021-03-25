@@ -5,10 +5,11 @@ import shutil
 import tkinter as tk
 from tkinter import ttk
 from tkinter.filedialog import askdirectory
-# from tkcalendar import *
-# from tkcalendar import Calendar
-# import tkinter.messagebox
-#from tkcalendar import Calendar, DateEntry
+from tkcalendar import *
+import tkcalendar
+from tkcalendar import Calendar
+import tkinter.messagebox
+from tkcalendar import Calendar, DateEntry
 import sqlite3
 
 import pandas as pd
@@ -198,13 +199,87 @@ class RegisterPage(tk.Frame):
 class ChildPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
         tk.Frame.__init__(self, parent)
-        
+    
         label = ttk.Label(self, text ="Child Registration Page", font="bold")        
         label.grid(row = 0, column = 1, padx = 10, pady = 10)
 
         button1 = ttk.Button(self, text ="Close", command = lambda : controller.show_frame(MainPage)) 
-        button1.grid(row = 5, column = 1, padx = 10, pady = 10)
+        button1.grid(row = 10, column = 1, padx = 10, pady = 10)
 
+        #********************************************************************************************
+
+        child_bday = tk.StringVar()
+        current_date = tk.StringVar()
+        Days = tk.StringVar()
+        child_age = tk.StringVar()
+        Months = tk.StringVar()
+        child_gender = tk.StringVar()
+        
+        def Reset():
+            child_bday.set("") 
+            current_date.set("")  
+            Days.set("") 
+            child_age.set("") 
+            Months.set("")
+            child_gender.set("")
+            Ent_child_first_name.delete(0, tk.END)
+            Ent_child_last_name.delete(0, tk.END)
+        
+        def iExit():
+            iExit =tkinter.messagebox.askyesno("User Registration", "Confirm if you want to Exit")
+            if iExit>=0:
+                self.destroy()
+                return
+        
+
+        def Results():
+            Ent_current_date = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
+            CurrentDate =(Ent_current_date.get_date())
+            DOBDate = (Ent_child_bday.get_date())
+
+            Day =(abs((CurrentDate - DOBDate).days))
+            Days.set(str(Day))
+
+            Age = int(Days.get())
+            Agess = (Age/365)
+            child_age .set(str('%.1f'%(Agess)))
+
+        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'), text="child_first_name")
+        child_first_name.grid(row=1, column=0,padx=5)
+        Ent_child_first_name = ttk.Entry(self, font=("arial", 10, 'bold'), width=44)
+        Ent_child_first_name .grid(row=1, column=1)
+
+        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'), text="child_last_name")
+        lbl_child_last_name.grid(row=2, column=0,padx=5)
+        Ent_child_last_name = ttk.Entry(self, font=("arial", 10, 'bold'), width=44)
+        Ent_child_last_name.grid(row=2, column=1)
+
+        lbl_child_bday= ttk.Label(self, font=("arial", 10, 'bold'), text="child_bday")
+        lbl_child_bday.grid(row=3, column=0, padx=5)
+        Ent_child_bday = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
+        Ent_child_bday.grid(row=3, column=1)
+
+        lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age")
+        lbl_child_age.grid(row=6, column=0,  padx=5)
+        Ent_child_age = ttk.Entry(self, font=("arial", 10, 'bold'), width=44, justify='left', textvariable=child_age)
+        Ent_child_age.grid(row=6, column=1)
+
+        lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), text="child_gender")
+        lbl_child_gender.grid(row=7, column=0, padx=5)
+
+        #the variable 'var' mentioned here holds Integer Value, by deault 0
+        var=tk.IntVar()
+        tk.Radiobutton(self, text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
+        tk.Radiobutton(self, text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
+
+        btnCalculate = ttk.Button(self, text="Calculate", command=lambda:  Results())
+        btnCalculate.grid(row=9, column=0,padx=10,pady=2)
+        
+        btnReset = ttk.Button(self, text="Reset",command=lambda: Reset())
+        btnReset.grid(row=9, column=1,padx=10,pady=2)
+        
+        btnExit = ttk.Button(self, text="Exit", command=lambda: iExit())
+        btnExit.grid(row=9, column=2,padx=10,pady=2)
 
 class MainPage(tk.Frame):      
     def __init__(self, parent, controller): 
@@ -282,7 +357,7 @@ class ChartPage(tk.Frame):
         img = ttk.Label(self, image=render)
         img.image = render
         img.grid(column=1, row=1)
-
+        
         button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
@@ -303,9 +378,6 @@ class ChartPage(tk.Frame):
             print("Destination ", pdf_destination) # to be deleted
                 
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
-
-
-    
 
 
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
