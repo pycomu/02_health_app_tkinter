@@ -180,14 +180,7 @@ class ChildPage(tk.Frame):
         button1.grid(row = 10, column = 1, padx = 10, pady = 10)
 
         #********************************************************************************************
-        """
-        child_bday = ""
-        current_date = ""
-        Days = ""
-        child_age = ""
-        Months = ""
-        child_gender = ""
-        """
+
         child_bday = tk.StringVar()
         current_date = tk.StringVar()
         Days = tk.StringVar()
@@ -202,8 +195,8 @@ class ChildPage(tk.Frame):
             child_age.set("") 
             Months.set("")
             child_gender.set("")
-            Ent_child_first_name.delete(0, END)
-            Ent_child_last_name.delete(0, END)
+            Ent_child_first_name.delete(0, tk.END)
+            Ent_child_last_name.delete(0, tk.END)
         
         def iExit():
             iExit =tkinter.messagebox.askyesno("User Registration", "Confirm if you want to Exit")
@@ -213,6 +206,7 @@ class ChildPage(tk.Frame):
         
 
         def Results():
+            Ent_current_date = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
             CurrentDate =(Ent_current_date.get_date())
             DOBDate = (Ent_child_bday.get_date())
 
@@ -237,11 +231,6 @@ class ChildPage(tk.Frame):
         lbl_child_bday.grid(row=3, column=0, padx=5)
         Ent_child_bday = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
         Ent_child_bday.grid(row=3, column=1)
-
-        lbl_current_date= ttk.Label(self, font=("arial", 10, 'bold'), text="current_date")
-        lbl_current_date.grid(row=4, column=0, padx=5)
-        Ent_current_date = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
-        Ent_current_date.grid(row=4, column=1)
 
         lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age")
         lbl_child_age.grid(row=6, column=0,  padx=5)
@@ -333,7 +322,7 @@ class ChartPage(tk.Frame):
 
         label1 = ttk.Label(self, text ="BMI Chart Page",font="bold")        
         label1.grid(row = 0, column = 0, padx = 10, pady = 10)
-        """
+        
         load = Image.open("./growthchart_example2.gif")
         #img = ImageTk.PhotoImage(Image.open("growthchart_example2.gif")) 
         render= ImageTk.PhotoImage(master=self,image = load) 
@@ -341,7 +330,7 @@ class ChartPage(tk.Frame):
         img = ttk.Label(self, image=render)
         img.image = render
         img.grid(column=1, row=1)
-        """
+        
         button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
