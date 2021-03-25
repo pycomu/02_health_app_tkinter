@@ -333,7 +333,7 @@ class ChartPage(tk.Frame):
 
         label1 = ttk.Label(self, text ="BMI Chart Page",font="bold")        
         label1.grid(row = 0, column = 0, padx = 10, pady = 10)
-        
+        """
         load = Image.open("./growthchart_example2.gif")
         #img = ImageTk.PhotoImage(Image.open("growthchart_example2.gif")) 
         render= ImageTk.PhotoImage(master=self,image = load) 
@@ -341,7 +341,7 @@ class ChartPage(tk.Frame):
         img = ttk.Label(self, image=render)
         img.image = render
         img.grid(column=1, row=1)
-
+        """
         button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
