@@ -253,16 +253,16 @@ class ChildPage(tk.Frame):
 
         #the variable 'var' mentioned here holds Integer Value, by deault 0
         var=tk.IntVar()
-        ttk.Radiobutton(self,justify='left', text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
-        ttk.Radiobutton(self,justify='left', text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
+        tk.Radiobutton(self, text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
+        tk.Radiobutton(self, text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
 
-        btnCalculate = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Calculate", bg='cadetblue',command=Results)
+        btnCalculate = ttk.Button(self, text="Calculate", command=lambda:  Results())
         btnCalculate.grid(row=9, column=0,padx=10,pady=2)
         
-        btnReset = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Reset", bg='cadetblue',command=Reset)
+        btnReset = ttk.Button(self, text="Reset",command=lambda: Reset())
         btnReset.grid(row=9, column=1,padx=10,pady=2)
         
-        btnExit = ttk.Button(self, padx=10, bd=7,font =('Helvetical', 10, 'bold'), width=23, text="Exit", bg='cadetblue', command=iExit)
+        btnExit = ttk.Button(self, text="Exit", command=lambda: iExit())
         btnExit.grid(row=9, column=2,padx=10,pady=2)
 
 class MainPage(tk.Frame):      
