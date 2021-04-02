@@ -355,10 +355,10 @@ class ChartPage(tk.Frame):
         img.image = render
         img.grid(column=1, row=1)
         
-        button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
+        button = ttk.Button (self, text="Close", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
-        button = ttk.Button (self, text="Export PdF Report", command = lambda : self.export_pdf())
+        button = ttk.Button (self, text="Export Pdf Report", command = lambda : self.export_pdf())
         button.grid(column=1, row=6)
 
     def export_pdf(self): # by this that function can be called even outside that class by <class.function>
@@ -366,14 +366,10 @@ class ChartPage(tk.Frame):
         # the pdf report must be created inside app and stored in specific folder ! ++++++++ open
         pdf_file = "/BMI_report_child_date.pdf" # could include name of child account ?
         pdf_source = os.path.realpath(os.getcwd()) + pdf_file # get working directory -> later from specific folder
-        print("Source ", pdf_source) # to be deleted
-            
+                    
         file = askdirectory() # ask user for folder to store(copy) pdf report; user can then use email to send away
         if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
-            print("new dir ",file) # to be deleted
-            pdf_destination = file + pdf_file
-            print("Destination ", pdf_destination) # to be deleted
-                
+            pdf_destination = file + pdf_file     
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
 
 
