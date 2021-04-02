@@ -136,7 +136,7 @@ class LoginPage(tk.Frame):
         button3 = ttk.Button(self, text ="Import", command = lambda : controller.show_frame(Import))
         button3.grid(row = 3, column = 3, padx = 10, pady = 10)
 
-        button4 = ttk.Button(self, text ="Export", command = lambda : controller.show_frame(LoginPage)) # not for pdf, for database export
+        button4 = ttk.Button(self, text ="Export", command = lambda : self.export_db()) # for database export
         # button4 = ttk.Button(self, text ="Export", command = lambda : ChartPage.export_pdf(self))  # test for class of "ChartPage"      
         button4.grid(row = 3, column = 4, padx = 10, pady = 10)
 
@@ -147,6 +147,14 @@ class LoginPage(tk.Frame):
         Entry1['validatecommand'] = (Entry1.register(controller.validatePIN),'%P')
         Entry1.grid(row=4, column=2)
 
+    def export_db(self): # by this that function can be called even outside that class by <class.function>
+        db_file = "./health_app.db" # complete sqlite database
+        db_source = os.path.realpath(os.getcwd()) + db_file # get working directory -> later from specific folder
+                    
+        file = askdirectory() # ask user for folder to store(copy) sqlite db - user can then use email to send away
+        if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
+            db_destination = file + db_file     
+            shutil.copy (db_source, db_destination) # copy and overwrite file
    
         
 class RegisterPage(tk.Frame):       
