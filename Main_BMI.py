@@ -392,7 +392,7 @@ class ChartPage(tk.Frame):
         if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
             pdf_destination = file + pdf_file     
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
-
+            messagebox.showinfo("Notice !","Export of pdf report done")
 
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
 
