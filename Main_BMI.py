@@ -5,7 +5,7 @@ import shutil
 import tkinter as tk
 from tkinter import ttk
 from tkinter.filedialog import askdirectory
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 
 from tkcalendar import *
 import tkcalendar
@@ -158,6 +158,7 @@ class LoginPage(tk.Frame):
         if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
             db_destination = file + db_file     
             shutil.copy (db_source, db_destination) # copy and overwrite file
+            messagebox.showinfo("Notice !","Export of db-file done")
 
     def import_db(self):
         files = [('db file', '*.db')] 
@@ -166,6 +167,7 @@ class LoginPage(tk.Frame):
             db_file = "/health_app.db"
             db_destination = os.path.realpath(os.getcwd()) + db_file    
             shutil.copy (db_import, db_destination) # copy and overwrite file, but name stays health_app.db !
+            messagebox.showinfo("Notice !","Import of db-file done, existing file overwritten !")
         # if imported db-file is corrupted or unable to read, then app new install with empty database !
         
 class RegisterPage(tk.Frame):       
