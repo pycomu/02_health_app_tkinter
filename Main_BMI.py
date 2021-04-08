@@ -11,6 +11,7 @@ from tkcalendar import Calendar
 import tkinter.messagebox
 from tkcalendar import Calendar, DateEntry
 from datetime import date
+#from ttkthemes import ThemedTk
 import sqlite3
 
 import pandas as pd
@@ -109,23 +110,23 @@ class LoginPage(tk.Frame):
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
         tk.Frame.__init__(self, parent)
         
-        label = ttk.Label(self, text ="Login Page", font="bold")        
+        label = ttk.Label(self, text ="Login Page", font="bold",style='My.TLabel')        
         label.grid(row = 0, column = 1, padx = 10, pady = 10)
   
-        button1 = ttk.Button(self, text ="Login", command = lambda : controller.show_frame(MainPage))
+        button1 = ttk.Button(self, text ="Login",style='My.TButton', command = lambda : controller.show_frame(MainPage))
         button1.grid(row = 3, column = 1, padx = 10, pady = 10)
 
-        button2 = ttk.Button(self, text ="Register", command = lambda : controller.show_frame(RegisterPage))
+        button2 = ttk.Button(self, text ="Register", style='My.TButton', command = lambda : controller.show_frame(RegisterPage))
         button2.grid(row = 3, column = 2, padx = 10, pady = 10)
         
-        button3 = ttk.Button(self, text ="Import", command = lambda : controller.show_frame(Import))
+        button3 = ttk.Button(self, text ="Import", style='My.TButton', command = lambda : controller.show_frame(Import))
         button3.grid(row = 3, column = 3, padx = 10, pady = 10)
 
-        button4 = ttk.Button(self, text ="Export", command = lambda : controller.show_frame(LoginPage)) # not for pdf, for database export
+        button4 = ttk.Button(self, text ="Export", style='My.TButton', command = lambda : controller.show_frame(LoginPage)) # not for pdf, for database export
         # button4 = ttk.Button(self, text ="Export", command = lambda : ChartPage.export_pdf(self))  # test for class of "ChartPage"      
         button4.grid(row = 3, column = 4, padx = 10, pady = 10)
 
-        label1 = ttk.Label(self, text="PIN (4 digits)", font=("Arial Italic", 10))
+        label1 = ttk.Label(self, text="PIN (4 digits)", font=("Arial Italic", 10),style='My.TLabel')
         label1.grid(row=4, column=1)
 
         Entry1 = ttk.Entry(self,width=10, show="*")  # field entry for PIN
@@ -136,19 +137,19 @@ class RegisterPage(tk.Frame):
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
         
-        label = ttk.Label(self, text ="Register Page",font="bold")        
+        label = ttk.Label(self, text ="Register Page",font="bold",style='My.TLabel')        
         label.grid(row = 0, column = 0, padx = 10, pady = 10)
 
-        label1 = ttk.Label(self, text="E-Mail", font=("Arial Italic", 10))
+        label1 = ttk.Label(self, text="E-Mail", font=("Arial Italic", 10),style='My.TLabel')
         label1.grid(row=1,column=1)
 
-        label2 = ttk.Label(self, text="Account Name", font=("Arial Italic", 10))
+        label2 = ttk.Label(self, text="Account Name", font=("Arial Italic", 10),style='My.TLabel')
         label2.grid(row=2,column=1)
         
-        label3 = ttk.Label(self, text="Enter PIN (4 digits)", font=("Arial Italic", 10))
+        label3 = ttk.Label(self, text="Enter PIN (4 digits)", font=("Arial Italic", 10),style='My.TLabel')
         label3.grid(row=3,column=1)
 
-        label4 = ttk.Label(self, text="Re-enter PIN", font=("Arial Italic", 10))
+        label4 = ttk.Label(self, text="Re-enter PIN", font=("Arial Italic", 10),style='My.TLabel')
         label4.grid(row=4,column=1)
 
 
@@ -164,20 +165,20 @@ class RegisterPage(tk.Frame):
         Entry4 = ttk.Entry(self,width=10,show="*") # field entry for PIN
         Entry4.grid(row=4, column=2)
 
-        button1 = ttk.Button(self, text ="Submit", command = lambda : controller.show_frame(LoginPage)) 
+        button1 = ttk.Button(self, text ="Submit", style='My.TButton', command = lambda : controller.show_frame(LoginPage)) 
         button1.grid(row = 5, column = 1, padx = 10, pady = 10)
 
-        button2 = ttk.Button(self, text ="Cancel", command = lambda : controller.show_frame(LoginPage)) 
+        button2 = ttk.Button(self, text ="Cancel", style='My.TButton',  command = lambda : controller.show_frame(LoginPage)) 
         button2.grid(row = 5, column = 2, padx = 10, pady = 10) 
 
 class ChildPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
         tk.Frame.__init__(self, parent)
     
-        label = ttk.Label(self, text ="Child Registration Page", font="bold")        
+        label = ttk.Label(self, text ="Child Registration Page", style='My.TLabel',font="bold")        
         label.grid(row = 0, column = 1, padx = 10, pady = 10)
 
-        button1 = ttk.Button(self, text ="Close", command = lambda : controller.show_frame(MainPage)) 
+        button1 = ttk.Button(self, text ="Close", style='My.TButton', command = lambda : controller.show_frame(MainPage)) 
         button1.grid(row = 10, column = 1, padx = 10, pady = 10)
 
         #********************************************************************************************
@@ -204,7 +205,7 @@ class ChildPage(tk.Frame):
             if iExit>=0:
                 self.destroy()
                 return
-        
+
 
         def Results():
             CurrentDate =date.today()
@@ -217,27 +218,27 @@ class ChildPage(tk.Frame):
             Agess = (Age/365)
             child_age .set(str('%.1f'%(Agess)))
 
-        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'), text="child_first_name")
+        child_first_name = ttk.Label(self, font=("arial", 10, 'bold'),style='My.TLabel', text="child_first_name")
         child_first_name.grid(row=1, column=0,padx=5)
         Ent_child_first_name = ttk.Entry(self, font=("arial", 10, 'bold'), width=44)
         Ent_child_first_name .grid(row=1, column=1)
 
-        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'), text="child_last_name")
+        lbl_child_last_name= ttk.Label(self, font=("arial", 10, 'bold'),style='My.TLabel', text="child_last_name")
         lbl_child_last_name.grid(row=2, column=0,padx=5)
         Ent_child_last_name = ttk.Entry(self, font=("arial", 10, 'bold'), width=44)
         Ent_child_last_name.grid(row=2, column=1)
 
-        lbl_child_bday= ttk.Label(self, font=("arial", 10, 'bold'), text="child_bday")
+        lbl_child_bday= ttk.Label(self, font=("arial", 10, 'bold'), style='My.TLabel', text="child_bday")
         lbl_child_bday.grid(row=3, column=0, padx=5)
         Ent_child_bday = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
         Ent_child_bday.grid(row=3, column=1)
 
-        lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age")
+        lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), style='My.TLabel',  text="child_age")
         lbl_child_age.grid(row=6, column=0,  padx=5)
         Ent_child_age = ttk.Label(self, font=("arial", 10, 'bold'), width=44, justify='left', textvariable=child_age)
         Ent_child_age.grid(row=6, column=1)
 
-        lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), text="child_gender")
+        lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), style='My.TLabel', text="child_gender")
         lbl_child_gender.grid(row=7, column=0, padx=5)
 
         #the variable 'var' mentioned here holds Integer Value, by deault 0
@@ -245,29 +246,36 @@ class ChildPage(tk.Frame):
         tk.Radiobutton(self, text="Male",padx= 5, variable= var, value=1).grid(row=7, column=1)
         tk.Radiobutton(self, text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
 
-        btnCalculate = ttk.Button(self, text="Calculate", command=lambda:  Results())
+        #https://www.color-hex.com/color/008000
+        gui_style = ttk.Style()
+        gui_style.configure('My.TButton', background='#FFFF00', foreground='#FF0000')
+        #gui_style.configure('My.TLabel', background='#FFFF00', foreground='#FF0000')
+        gui_style.configure('My.TLabel', background='#0000FF', foreground='#FFFFFF')
+        gui_style.configure('My.TFrame', background='#FF0000')
+
+        btnCalculate = ttk.Button(self, text="Calculate", style='My.TButton', command=lambda:  Results())
         btnCalculate.grid(row=9, column=0,padx=10,pady=2)
         
-        btnReset = ttk.Button(self, text="Reset",command=lambda: Reset())
+        btnReset = ttk.Button(self, text="Reset", style='My.TButton', command=lambda: Reset())
         btnReset.grid(row=9, column=1,padx=10,pady=2)
         
-        btnExit = ttk.Button(self, text="Exit", command=lambda: iExit())
+        btnExit = ttk.Button(self, text="Exit", style='My.TButton', command=lambda: iExit())
         btnExit.grid(row=9, column=2,padx=10,pady=2)
 
 class MainPage(tk.Frame):      
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
         
-        label1 = ttk.Label(self, text ="USer Details - Main Page",font="bold")        
+        label1 = ttk.Label(self, text ="USer Details - Main Page",font="bold",style='My.TLabel')        
         label1.grid(row = 0, column = 0, padx = 10, pady = 10)
 
-        label2 = ttk.Label(self, text="Height in m", font=("Arial Italic", 10))
+        label2 = ttk.Label(self, text="Height in m", font=("Arial Italic", 10),style='My.TLabel')
         label2.grid(column=0, row=2)
         
-        label3 = ttk.Label(self, text="Weight in Kg", font=("Arial Italic", 10))
+        label3 = ttk.Label(self, text="Weight in Kg", font=("Arial Italic", 10),style='My.TLabel')
         label3.grid(column=0, row=3)
 
-        label4 = ttk.Label(self, text="Age", font=("Arial Italic", 10))
+        label4 = ttk.Label(self, text="Age", font=("Arial Italic", 10),style='My.TLabel')
         label4.grid(column=0, row=4)
         
         height = ""
@@ -287,17 +295,18 @@ class MainPage(tk.Frame):
         self.list = tk.Listbox(self)  
         self.list.insert(0, *list_child) 
         self.list.grid(row=1,column=1)
-                                   
-        button2 = ttk.Button(self, text="BMI Chart", command = lambda: controller.show_frame(ChartPage))
+
+                            
+        button2 = ttk.Button(self, text="BMI Chart", style='My.TButton',command = lambda: controller.show_frame(ChartPage))
         button2.grid(row = 6, column = 1,padx = 10, pady = 10) 
 
-        button5 = ttk.Button(self, text ="Close", command = lambda : controller.show_frame(LoginPage)) 
+        button5 = ttk.Button(self, text ="Close", style='My.TButton',command = lambda : controller.show_frame(LoginPage)) 
         button5.grid(row = 6, column = 2,padx = 10, pady = 10) 
 
-        button1 = ttk.Button(self, text="Calculate BMI", command=lambda:  calc_bmi())
+        button1 = ttk.Button(self, text="Calculate BMI", style='My.TButton',command=lambda:  calc_bmi())
         button1.grid(row = 6, column = 0,padx = 10, pady = 10) 
 
-        button3 = ttk.Button(self, text="Register Child", command = lambda: controller.show_frame(ChildPage))
+        button3 = ttk.Button(self, text="Register Child", style='My.TButton',command = lambda: controller.show_frame(ChildPage))
         button3.grid(row = 2, column = 3,padx = 10, pady = 10) 
         
         
@@ -310,17 +319,17 @@ class MainPage(tk.Frame):
             weight = float(weight)
          BMI =  weight/(height*2)
          
-         label5 = ttk.Label(self, text="BMI Index", font=("Arial Italic", 10))
+         label5 = ttk.Label(self, text="BMI Index", font=("Arial Italic", 10),style='My.TLabel')
          label5.grid(column=0, row=5)
 
-         label6 = ttk.Label(self, text=BMI, font=("Arial Italic", 10))
+         label6 = ttk.Label(self, text=BMI, font=("Arial Italic", 10),style='My.TLabel')
          label6.grid(column=1, row=5)
 
 class ChartPage(tk.Frame):      
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
 
-        label1 = ttk.Label(self, text ="BMI Chart Page",font="bold")        
+        label1 = ttk.Label(self, text ="BMI Chart Page",font="bold",style='My.TLabel')        
         label1.grid(row = 0, column = 0, padx = 10, pady = 10)
         """
         load = Image.open("./growthchart_example2.gif")
@@ -331,10 +340,10 @@ class ChartPage(tk.Frame):
         img.image = render
         img.grid(column=1, row=1)
         """
-        button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
+        button = ttk.Button (self, text="Close.", style='My.TButton', command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
-        button = ttk.Button (self, text="Export PdF Report", command = lambda : self.export_pdf())
+        button = ttk.Button (self, text="Export PdF Report", style='My.TButton', command = lambda : self.export_pdf())
         button.grid(column=1, row=6)
 
     def export_pdf(self): # by this that function can be called even outside that class by <class.function>
