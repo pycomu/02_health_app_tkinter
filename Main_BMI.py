@@ -10,6 +10,7 @@ import tkcalendar
 from tkcalendar import Calendar
 import tkinter.messagebox
 from tkcalendar import Calendar, DateEntry
+from datetime import date
 import sqlite3
 
 import pandas as pd
@@ -206,10 +207,9 @@ class ChildPage(tk.Frame):
         
 
         def Results():
-            Ent_current_date = DateEntry(self, font=("arial", 10, 'bold'), width=43, borderwidth=2, date_pattern='dd/mm/yyyy')
-            CurrentDate =(Ent_current_date.get_date())
+            CurrentDate =date.today()
             DOBDate = (Ent_child_bday.get_date())
-
+           
             Day =(abs((CurrentDate - DOBDate).days))
             Days.set(str(Day))
 
@@ -234,7 +234,7 @@ class ChildPage(tk.Frame):
 
         lbl_child_age= ttk.Label(self, font=("arial", 10, 'bold'), text="child_age")
         lbl_child_age.grid(row=6, column=0,  padx=5)
-        Ent_child_age = ttk.Entry(self, font=("arial", 10, 'bold'), width=44, justify='left', textvariable=child_age)
+        Ent_child_age = ttk.Label(self, font=("arial", 10, 'bold'), width=44, justify='left', textvariable=child_age)
         Ent_child_age.grid(row=6, column=1)
 
         lbl_child_gender= ttk.Label(self, font=("arial", 10, 'bold'), text="child_gender")
@@ -322,7 +322,7 @@ class ChartPage(tk.Frame):
 
         label1 = ttk.Label(self, text ="BMI Chart Page",font="bold")        
         label1.grid(row = 0, column = 0, padx = 10, pady = 10)
-        
+        """
         load = Image.open("./growthchart_example2.gif")
         #img = ImageTk.PhotoImage(Image.open("growthchart_example2.gif")) 
         render= ImageTk.PhotoImage(master=self,image = load) 
@@ -330,7 +330,7 @@ class ChartPage(tk.Frame):
         img = ttk.Label(self, image=render)
         img.image = render
         img.grid(column=1, row=1)
-        
+        """
         button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
@@ -352,7 +352,7 @@ class ChartPage(tk.Frame):
                 
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
 
-
+        
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
 
 if __name__ == "__main__":
