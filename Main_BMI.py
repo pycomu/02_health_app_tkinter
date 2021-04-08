@@ -247,10 +247,13 @@ class ChildPage(tk.Frame):
         tk.Radiobutton(self, text="Female",padx= 20, variable= var, value=2).grid(row=7, column=2)
 
         #https://www.color-hex.com/color/008000
-        gui_style = ttk.Style()
-        gui_style.configure('My.TButton', background='#FFFF00', foreground='#FF0000')
+        #gui_style = ttk.Style()
+        #gui_style.configure('My.TButton', background='#FFFF00', foreground='#FF0000')
         #gui_style.configure('My.TLabel', background='#FFFF00', foreground='#FF0000')
-        gui_style.configure('My.TLabel', background='#0000FF', foreground='#FFFFFF')
+        #gui_style.configure('My.TLabel', background='#0000FF', foreground='#FFFFFF')
+        gui_style = ttk.Style()
+        gui_style.configure('My.TButton', background='yellow', foreground='red')
+        gui_style.configure('My.TLabel', background='blue', foreground='white')
         gui_style.configure('My.TFrame', background='#FF0000')
 
         btnCalculate = ttk.Button(self, text="Calculate", style='My.TButton', command=lambda:  Results())
