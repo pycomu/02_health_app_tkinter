@@ -50,7 +50,7 @@
 
   <meta name="viewport" content="width=device-width">
   
-  <title>02_health_app/example_db.py at main · pycomu/02_health_app</title>
+  <title>02_health_app/database.py at main · pycomu/02_health_app</title>
     <meta name="description" content="Contribute to pycomu/02_health_app development by creating an account on GitHub.">
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
   <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
@@ -64,11 +64,11 @@
     
 
   <link rel="assets" href="https://github.githubassets.com/">
-    <link rel="shared-web-socket" href="wss://alive.github.com/_sockets/u/63949690/ws?session=eyJ2IjoiVjMiLCJ1Ijo2Mzk0OTY5MCwicyI6NjcyNDc3MzIzLCJjIjoxNDM4MzYyMjUzLCJ0IjoxNjE3OTYzMDA1fQ==--9c0597e637a27edc39d7ad4ba5ecc5bf44d920cd13c52eb9ddc0e223f14ed14e" data-refresh-url="/_alive" data-session-id="af8d388b4b24ae16f4044627b6e2132fb76086fdbf56646b442095019da3f902">
+    <link rel="shared-web-socket" href="wss://alive.github.com/_sockets/u/63949690/ws?session=eyJ2IjoiVjMiLCJ1Ijo2Mzk0OTY5MCwicyI6NjcyNDc3MzIzLCJjIjoyMDkzMDU2MTk4LCJ0IjoxNjE3OTYyOTgzfQ==--02665beae67d6b27e6f1f9df0c2c7d44935299918e357f2cc8ad6fe607aecef8" data-refresh-url="/_alive" data-session-id="af8d388b4b24ae16f4044627b6e2132fb76086fdbf56646b442095019da3f902">
     <link rel="shared-web-socket-src" href="/socket-worker-3f088aa2.js">
   <link rel="sudo-modal" href="/sessions/sudo_modal">
 
-  <meta name="request-id" content="CFCB:3E3B:4108CC:42ACE0:607027E7" data-pjax-transient="true" /><meta name="html-safe-nonce" content="70abbd85e9473bebc1a99f32ae1e20e8cdb75e6ad65bc38f87dbd2f4b67e9f44" data-pjax-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6Imh0dHBzOi8vZ2l0aHViLmNvbS9weWNvbXUvMDJfaGVhbHRoX2FwcC9maW5kL21haW4iLCJyZXF1ZXN0X2lkIjoiQ0ZDQjozRTNCOjQxMDhDQzo0MkFDRTA6NjA3MDI3RTciLCJ2aXNpdG9yX2lkIjoiODc2MzQ3MTU3MDM5MDYyMDI0NyIsInJlZ2lvbl9lZGdlIjoiZnJhIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-pjax-transient="true" /><meta name="visitor-hmac" content="cebf96575dfe56c7f5fd949c87de9f8ecd27db95d82f56ad948fc59172f2064a" data-pjax-transient="true" />
+  <meta name="request-id" content="CFCB:3E3B:40E7A3:428ADC:607027D4" data-pjax-transient="true" /><meta name="html-safe-nonce" content="70abbd85e9473bebc1a99f32ae1e20e8cdb75e6ad65bc38f87dbd2f4b67e9f44" data-pjax-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6Imh0dHBzOi8vZ2l0aHViLmNvbS9weWNvbXUvMDJfaGVhbHRoX2FwcC9maW5kL21haW4iLCJyZXF1ZXN0X2lkIjoiQ0ZDQjozRTNCOjQwRTdBMzo0MjhBREM6NjA3MDI3RDQiLCJ2aXNpdG9yX2lkIjoiODc2MzQ3MTU3MDM5MDYyMDI0NyIsInJlZ2lvbl9lZGdlIjoiZnJhIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-pjax-transient="true" /><meta name="visitor-hmac" content="6201edd92c6d759ce8b0196e51a98a769a835fa1da16063ec0fa4cd6e3ed24b5" data-pjax-transient="true" />
 
     <meta name="hovercard-subject-tag" content="repository:335600886" data-pjax-transient>
 
@@ -107,7 +107,7 @@
 
       <meta name="expected-hostname" content="github.com">
 
-      <meta name="js-proxy-site-detection-payload" content="YzNkYmEyMTQxYzNkYTFjN2MzNzc0ZTg4M2FlMjY1ZmMzMzNhMTE4YjFlNDljODE0NDY4OTM0NjUyY2VkMDljOXx7InJlbW90ZV9hZGRyZXNzIjoiNjIuMjE2LjIwOS45NyIsInJlcXVlc3RfaWQiOiJDRkNCOjNFM0I6NDEwOENDOjQyQUNFMDo2MDcwMjdFNyIsInRpbWVzdGFtcCI6MTYxNzk2MzAwNSwiaG9zdCI6ImdpdGh1Yi5jb20ifQ==">
+      <meta name="js-proxy-site-detection-payload" content="YTQ3ZTJkMDBjMmNiMmViYmJmNjNhNTE3OTQxNjRlODQ4YzUxZWQ0NWFjZTA0MjAyNWZlZDE3OTMzZjZiMjUzNHx7InJlbW90ZV9hZGRyZXNzIjoiNjIuMjE2LjIwOS45NyIsInJlcXVlc3RfaWQiOiJDRkNCOjNFM0I6NDBFN0EzOjQyOEFEQzo2MDcwMjdENCIsInRpbWVzdGFtcCI6MTYxNzk2Mjk4MywiaG9zdCI6ImdpdGh1Yi5jb20ifQ==">
 
     <meta name="enabled-features" content="MARKETPLACE_PENDING_INSTALLATIONS,JS_HTTP_CACHE_HEADERS,AUTOCOMPLETE_EMOJIS_IN_MARKDOWN_EDITOR">
 
@@ -121,7 +121,7 @@
 
 
 
-    <link rel="canonical" href="https://github.com/pycomu/02_health_app/blob/main/library/example_db.py" data-pjax-transient>
+    <link rel="canonical" href="https://github.com/pycomu/02_health_app/blob/main/library/database.py" data-pjax-transient>
 
 
   <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
@@ -195,7 +195,7 @@
           spellcheck="false"
           autocomplete="off"
           >
-          <input type="hidden" value="EZAEZhPY/O6Tls+f04cl8y57vRDqRg6oLyWK1J3jSGpj0dqXQhpdq79wuGJQQzni85OSsSwuO8aBlOWUsJsy9g==" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" />
+          <input type="hidden" value="bUNY8idI/BTgjcVSIkNGPYSQpVRFYa86UsTvwqPixEAfAoYDdopdUcxrsq+hh1osWXiK9YMJmlT8dYCCjpq+3A==" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" />
           <input type="hidden" class="js-site-search-type-field" name="type" >
             <img src="https://github.githubassets.com/images/search-key-slash.svg" alt="" class="mr-2 header-search-key-slash">
 
@@ -374,7 +374,7 @@
     <a class="js-selected-navigation-item Header-link d-block d-md-none py-2 py-md-3 border-top border-md-top-0 border-white-fade-15" data-ga-click="Header, click, Nav menu - item:workspaces context:user" data-selected-links="/codespaces /codespaces" href="/codespaces">
       Codespaces
 </a>
-      <a class="js-selected-navigation-item Header-link d-block d-md-none py-2 py-md-3 border-top border-md-top-0 border-white-fade-15" data-ga-click="Header, click, Nav menu - item:Sponsors" data-hydro-click="{&quot;event_type&quot;:&quot;sponsors.button_click&quot;,&quot;payload&quot;:{&quot;button&quot;:&quot;HEADER_SPONSORS_DASHBOARD&quot;,&quot;sponsorable_login&quot;:&quot;MaagMichael&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="04f9d684b7e888a28a2c818f113a3d52675ea86d2356143e13fb7dd3d33849dc" data-selected-links=" /sponsors/accounts" href="/sponsors/accounts">Sponsors</a>
+      <a class="js-selected-navigation-item Header-link d-block d-md-none py-2 py-md-3 border-top border-md-top-0 border-white-fade-15" data-ga-click="Header, click, Nav menu - item:Sponsors" data-hydro-click="{&quot;event_type&quot;:&quot;sponsors.button_click&quot;,&quot;payload&quot;:{&quot;button&quot;:&quot;HEADER_SPONSORS_DASHBOARD&quot;,&quot;sponsorable_login&quot;:&quot;MaagMichael&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="994a71584cf0e58d1b498eb9b21689757916f3bd0c20a40815ab4d9cd453f1b9" data-selected-links=" /sponsors/accounts" href="/sponsors/accounts">Sponsors</a>
 
     <a class="Header-link d-block d-md-none mr-0 mr-md-3 py-2 py-md-3 border-top border-md-top-0 border-white-fade-15" href="/settings/profile">
       Settings
@@ -383,7 +383,7 @@
       <img class="avatar avatar-user" src="https://avatars.githubusercontent.com/u/63949690?s=40&amp;v=4" width="20" height="20" alt="@MaagMichael" />
       MaagMichael
 </a>
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/logout" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="aOugHyFqPRvtbNbst3nhqmkGf6Gk/4WI8d441S/WpGk5fei5X2pCDM0pozTka7mhIyhYhxDQu7Qg5MPgDfPsmw==" />
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/logout" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="kJ0Mf597WuLqLtPl/P792n1+X/pev/oEngBtgsLEESvBC0TZ4Xsl9cprpj2v7KXRN1B43OqQxDhPOpa34OFZ2Q==" />
       <button type="submit" class="Header-link mr-0 mr-md-3 py-2 py-md-3 border-top border-md-top-0 border-white-fade-15 d-md-none btn-link d-block width-full text-left" data-ga-click="Header, sign out, icon:logout" style="padding-left: 2px;">
         <svg class="octicon octicon-sign-out v-align-middle" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2 2.75C2 1.784 2.784 1 3.75 1h2.5a.75.75 0 010 1.5h-2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 012 13.25V2.75zm10.44 4.5H6.75a.75.75 0 000 1.5h5.69l-1.97 1.97a.75.75 0 101.06 1.06l3.25-3.25a.75.75 0 000-1.06l-3.25-3.25a.75.75 0 10-1.06 1.06l1.97 1.97z"></path></svg>
         Sign out
@@ -407,7 +407,7 @@
       <notification-indicator
         class="js-socket-channel"
         data-test-selector="notifications-indicator"
-        data-channel="eyJjIjoibm90aWZpY2F0aW9uLWNoYW5nZWQ6NjM5NDk2OTAiLCJ0IjoxNjE3OTYzMDA1fQ==--8ae9d3e6c94633fb3ee0521d88d4b8eb7efb94ea11838f834cc09f16a3168a8f">
+        data-channel="eyJjIjoibm90aWZpY2F0aW9uLWNoYW5nZWQ6NjM5NDk2OTAiLCJ0IjoxNjE3OTYyOTgzfQ==--124e067038a3b48be02c6ed7630c49223b7501577a35226434f56cc8d2084816">
         <a href="/notifications"
           class="Header-link notification-indicator position-relative tooltipped tooltipped-sw"
           
@@ -577,7 +577,7 @@
         data-action="toggle:notifications-list-subscription-form#detailsToggled"
       >
 
-      <summary class="btn btn-sm rounded-right-0" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;WATCH_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="a178b1c4bdefe41a4038732d94d27984304d5f27c378098462c370d2756e3f22" data-ga-click="Repository, click Watch settings, action:blob#show" aria-label="Notifications settings">
+      <summary class="btn btn-sm rounded-right-0" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;WATCH_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="21ec1cdf569bd16826f733a7ce4f1be4531940c962040d2e4d9edc9d2683fa18" data-ga-click="Repository, click Watch settings, action:blob#show" aria-label="Notifications settings">
           <span data-menu-button>
             <span
               hidden
@@ -621,7 +621,7 @@
             </header>
 
             <div class="SelectMenu-list">
-              <form data-target="notifications-list-subscription-form.form" data-action="submit:notifications-list-subscription-form#submitForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="9FKhiH9hi03ty9bBoxiCdCi01EnPGrEVn+TBSDSAnXPWZybtvkqzkQRU9GhZn1JpV1qDK13P3e7fT4vAbp0+/A==" />
+              <form data-target="notifications-list-subscription-form.form" data-action="submit:notifications-list-subscription-form#submitForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="nhOlKi71+Un2e7Y1aQnnduB+wXmkAYp9zeoZsTErP2+8JiJP797BlR/klJyTjjdrn5CWGzbU5oaNQVM5azac4A==" />
 
                 <input type="hidden" name="repository_id" value="335600886">
 
@@ -723,7 +723,7 @@
 
         <details-dialog class="notifications-component-dialog " data-target="notifications-list-subscription-form.customDialog" hidden>
           <div class="SelectMenu-modal notifications-component-dialog-modal overflow-visible">
-            <form data-target="notifications-list-subscription-form.customform" data-action="submit:notifications-list-subscription-form#submitCustomForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="9t9ZMxoutCFBx1VMXXLWKtHSHOCYX/yulD/ZXFygYoPU6t5W2wWM/ahYd+Wn9QY3rjxLggqKkFXUlJPUBr3BDA==" />
+            <form data-target="notifications-list-subscription-form.customform" data-action="submit:notifications-list-subscription-form#submitCustomForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="8mYUlDdG2iHMYzSlsaCxLz3lS+oELPN1+urdG5KvD9XQU5Px9m3i/SX8FgxLJ2EyQgsciJb5n466QZeTyLKsWg==" />
 
               <input type="hidden" name="repository_id" value="335600886">
 
@@ -861,9 +861,9 @@
 
   <li>
         <div class="d-block js-toggler-container js-social-container starring-container ">
-    <form class="starred js-social-form" action="/pycomu/02_health_app/unstar" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="NnJ0ZeKft0A97nk64VJw8I75DyIjC+72lM4ouSgxrB4AS3HvKz4YMdl3vttHfMh4QRiNUuvnnUuCbInVAo6z/Q==" />
+    <form class="starred js-social-form" action="/pycomu/02_health_app/unstar" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="CSecCoaSzZoCydWM9R/u1U2ZOhhNwOqwulUoZgwU1v8/HpmATzNi6+ZQEm1TMVZdgni4aIUsmQ2s94kKJqvJHA==" />
       <input type="hidden" name="context" value="repository">
-      <button type="submit" class="btn btn-sm btn-with-count  js-toggler-target" aria-label="Unstar this repository" title="Unstar pycomu/02_health_app" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;UNSTAR_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="ba8b669b6399c2fc28258e9159aeba6eca55cece2de5eed12ebb5500833f90e1" data-ga-click="Repository, click unstar button, action:blob#show; text:Unstar">        <svg class="octicon octicon-star-fill mr-1" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path></svg>
+      <button type="submit" class="btn btn-sm btn-with-count  js-toggler-target" aria-label="Unstar this repository" title="Unstar pycomu/02_health_app" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;UNSTAR_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="1d7ed83aaa4386cebaaeaa42de3429de6d8840e64beb6440065c61e308696cbf" data-ga-click="Repository, click unstar button, action:blob#show; text:Unstar">        <svg class="octicon octicon-star-fill mr-1" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path></svg>
         <span>
           Unstar
 </span></button>        <a class="social-count js-social-count" href="/pycomu/02_health_app/stargazers"
@@ -871,9 +871,9 @@
            0
         </a>
 </form>
-    <form class="unstarred js-social-form" action="/pycomu/02_health_app/star" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="bx8JASDecjwhN1iJoq1WFL5pio3wIg6YGrZVjxEoFsjrQXqTtI8tKniVzEW+0qRQRptGP+nT0jtiPFqq6mT9NQ==" />
+    <form class="unstarred js-social-form" action="/pycomu/02_health_app/star" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="zdMqX09KdrH6ZxSsi+2OnOUwm5qxgRxbwDB6uxrpoBtJjVnN2xspp6PFgGCXknzYHcJXKKhwwPi4unWe4aVL5g==" />
       <input type="hidden" name="context" value="repository">
-      <button type="submit" class="btn btn-sm btn-with-count  js-toggler-target" aria-label="Unstar this repository" title="Star pycomu/02_health_app" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;STAR_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="d0e01c8fb4bea1ac12989d7a3c739de28ab228ade72d6ea8c0e8955a0b815ba5" data-ga-click="Repository, click star button, action:blob#show; text:Star">        <svg class="octicon octicon-star mr-1" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg>
+      <button type="submit" class="btn btn-sm btn-with-count  js-toggler-target" aria-label="Unstar this repository" title="Star pycomu/02_health_app" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;STAR_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="0f62309d914cdf20941c563b72e65b4936b610086c37ed67ede8319af7a640ed" data-ga-click="Repository, click star button, action:blob#show; text:Star">        <svg class="octicon octicon-star mr-1" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg>
         <span>
           Star
 </span></button>        <a class="social-count js-social-count" href="/pycomu/02_health_app/stargazers"
@@ -885,8 +885,8 @@
   </li>
 
   <li>
-            <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="btn-with-count" action="/pycomu/02_health_app/fork" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="5RVZ2uyonFbgxZ6FB7Kra7QiRyZUtJvq56huQBF1gVB15LA5yLGcXETDg1ctmIesQzCLBFfNNjE07oyMeDAcVg==" />
-              <button class="btn btn-sm btn-with-count" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FORK_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="f04be7c48eef43621403ce7d8c9dac9c1dd9f48d7197e3a5b6cf6f98994783aa" data-ga-click="Repository, show fork modal, action:blob#show; text:Fork" type="submit" title="Fork your own copy of pycomu/02_health_app to your account" aria-label="Fork your own copy of pycomu/02_health_app to your account">                <svg class="octicon octicon-repo-forked" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path></svg>
+            <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="btn-with-count" action="/pycomu/02_health_app/fork" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="DAA4wCsvVi45noa1uGkrMYo0ewcAxfz3ReNcZKOep0Sc8dEjDzZWJJ2Ym2eSQwf2fSa3JQO8USyWpb6oyts6Qg==" />
+              <button class="btn btn-sm btn-with-count" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FORK_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="503f0f551b9919b01784dc2ba33349caf53c4f144221d7016c33b61b64c4fe27" data-ga-click="Repository, show fork modal, action:blob#show; text:Fork" type="submit" title="Fork your own copy of pycomu/02_health_app to your account" aria-label="Fork your own copy of pycomu/02_health_app to your account">                <svg class="octicon octicon-repo-forked" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path></svg>
                 Fork
 </button></form>
       <a href="/pycomu/02_health_app/network/members" class="social-count"
@@ -1008,9 +1008,9 @@
   
 
 
-    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/pycomu/02_health_app/blob/868fb60e492e0d7849c0a5d32e622f242c574ddf/library/example_db.py">Permalink</a>
+    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/pycomu/02_health_app/blob/868fb60e492e0d7849c0a5d32e622f242c574ddf/library/database.py">Permalink</a>
 
-    <!-- blob contrib key: blob_contributors:v22:0fdd03aa01c8a1e4cf14df1f1724e6fa39a48fe219ebcfd1cdd323b522cf9527 -->
+    <!-- blob contrib key: blob_contributors:v22:a41174f720232b04c3cd5c9285347e2b18fdbb265d1666671fa367312736d2c2 -->
 
     <div class="d-flex flex-items-start flex-shrink-0 pb-3 flex-wrap flex-md-nowrap flex-justify-between flex-md-justify-start">
       
@@ -1070,10 +1070,10 @@
           >
 
             <template data-target="ref-selector.noMatchTemplate">
-                <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/pycomu/02_health_app/branches" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="SYfTRFLK27Fc9GRS3bDIcC7l9wMBjbg93eRHHlygpvXj+VaU75AinF5cyVLxUbwI6Sj9x7glSf68X0FvQ8J7MA==" />
+                <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/pycomu/02_health_app/branches" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Py78kKZN0WwLxfgWv1+ChfSxtO52BMbP6A+YaHcb9m6VUHlAGxcoQQltVRaTvvb9M3y+Ks+sNwyJtJ4ZaHkrqw==" />
                   <input type="hidden" name="name" value="{{ refName }}">
                   <input type="hidden" name="branch"  value="main">
-                  <input type="hidden" name="path_binary" value="bGlicmFyeS9leGFtcGxlX2RiLnB5">
+                  <input type="hidden" name="path_binary" value="bGlicmFyeS9kYXRhYmFzZS5weQ==">
 
                   <button class="SelectMenu-item break-word" type="submit" role="menuitem" data-index="{{ index }}">
                     <svg class="octicon octicon-git-branch SelectMenu-icon flex-self-baseline" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"></path></svg>
@@ -1096,7 +1096,7 @@
             </div>
 
             <template data-target="ref-selector.itemTemplate">
-              <a href="https://github.com/pycomu/02_health_app/blob/{{ urlEncodedRefName }}/library/example_db.py" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
+              <a href="https://github.com/pycomu/02_health_app/blob/{{ urlEncodedRefName }}/library/database.py" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
                 <svg class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
                 <span class="flex-1 css-truncate css-truncate-overflow {{ isFilteringClass }}">{{ refName }}</span>
                 <span hidden="{{ isNotDefault }}" class="Label Label--secondary flex-self-start">default</span> 
@@ -1128,7 +1128,7 @@
             </template>
 
             <template data-target="ref-selector.itemTemplate">
-              <a href="https://github.com/pycomu/02_health_app/blob/{{ urlEncodedRefName }}/library/example_db.py" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
+              <a href="https://github.com/pycomu/02_health_app/blob/{{ urlEncodedRefName }}/library/database.py" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
                 <svg class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
                 <span class="flex-1 css-truncate css-truncate-overflow {{ isFilteringClass }}">{{ refName }}</span>
                 <span hidden="{{ isNotDefault }}" class="Label Label--secondary flex-self-start">default</span>
@@ -1155,9 +1155,9 @@
 </div>
 
       <h2 id="blob-path" class="breadcrumb flex-auto flex-self-center min-width-0 text-normal mx-2 width-full width-md-auto flex-order-1 flex-md-order-none mt-3 mt-md-0">
-        <span class="js-repo-root text-bold"><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="true" href="/pycomu/02_health_app"><span>02_health_app</span></a></span></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="true" href="/pycomu/02_health_app/tree/main/library"><span>library</span></a></span><span class="separator">/</span><strong class="final-path">example_db.py</strong>
+        <span class="js-repo-root text-bold"><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="true" href="/pycomu/02_health_app"><span>02_health_app</span></a></span></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="true" href="/pycomu/02_health_app/tree/main/library"><span>library</span></a></span><span class="separator">/</span><strong class="final-path">database.py</strong>
           <span class="separator">/</span><details class="details-reset details-overlay d-inline" id="jumpto-symbol-select-menu">
-  <summary class="btn-link Link--secondary css-truncate" aria-haspopup="true" data-hotkey="r" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.click_on_blob_definitions&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;click_on_blob_definitions&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="e24a8b4dbc2da559cdd2e1b6d2db7ad9cac853230675c3264134063a2661da85">
+  <summary class="btn-link Link--secondary css-truncate" aria-haspopup="true" data-hotkey="r" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.click_on_blob_definitions&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;click_on_blob_definitions&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="19c56a3ee6af170751432fe12dd6f9fd466730516bfd0df9bce3c0aa57c48c55">
       <svg class="octicon octicon-code" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M4.72 3.22a.75.75 0 011.06 1.06L2.06 8l3.72 3.72a.75.75 0 11-1.06 1.06L.47 8.53a.75.75 0 010-1.06l4.25-4.25zm6.56 0a.75.75 0 10-1.06 1.06L13.94 8l-3.72 3.72a.75.75 0 101.06 1.06l4.25-4.25a.75.75 0 000-1.06l-4.25-4.25z"></path></svg>
     <span data-menu-button>Jump to</span>
     <span class="dropdown-caret"></span>
@@ -1183,13 +1183,13 @@
         </div>
       <div class="SelectMenu-list">
         <div data-filterable-for="jumpto-symbols-filter-field" data-filterable-type="substring">
-            <a class="SelectMenu-item d-flex flex-justify-between css-truncate" role="menuitemradio" aria-checked="false" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.navigate_to_blob_definition&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;navigate_to_blob_definition&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="11fb86fb2531369774b6886862ab4d6233abc45d08ff32c24dde84c1a5623a4f" href="/pycomu/02_health_app/blob/main/library/example_db.py#L1">
+            <a class="SelectMenu-item d-flex flex-justify-between css-truncate" role="menuitemradio" aria-checked="false" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.navigate_to_blob_definition&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;navigate_to_blob_definition&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="b1dccdfab476e20763a6e82562274fecf930147f115c699453c13fa181b7865a" href="/pycomu/02_health_app/blob/main/library/database.py#L4">
               <svg class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
-              <span class="flex-auto css-truncate-target" data-menu-button-text>add_2_fig</span>
+              <span class="flex-auto css-truncate-target" data-menu-button-text>connect</span>
               <span class="flex-auto d-flex flex-justify-end">Function</span>
-</a>            <a class="SelectMenu-item d-flex flex-justify-between css-truncate" role="menuitemradio" aria-checked="false" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.navigate_to_blob_definition&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;navigate_to_blob_definition&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="11fb86fb2531369774b6886862ab4d6233abc45d08ff32c24dde84c1a5623a4f" href="/pycomu/02_health_app/blob/main/library/example_db.py#L5">
+</a>            <a class="SelectMenu-item d-flex flex-justify-between css-truncate" role="menuitemradio" aria-checked="false" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.navigate_to_blob_definition&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;navigate_to_blob_definition&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="b1dccdfab476e20763a6e82562274fecf930147f115c699453c13fa181b7865a" href="/pycomu/02_health_app/blob/main/library/database.py#L8">
               <svg class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
-              <span class="flex-auto css-truncate-target" data-menu-button-text>add_geeting</span>
+              <span class="flex-auto css-truncate-target" data-menu-button-text>store_account</span>
               <span class="flex-auto d-flex flex-justify-end">Function</span>
 </a>        </div>
       </div>
@@ -1216,7 +1216,7 @@
 </summary>
   <div>          <ul class="dropdown-menu dropdown-menu-sw">
             <li class="d-block d-md-none">
-              <a class="dropdown-item d-flex flex-items-baseline" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FIND_FILE_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="f1736fa7493579f77543b170cc3d77c191ddb4a126d6c22cf3b9ab33fab6842f" data-ga-click="Repository, find file, location:repo overview" data-hotkey="t" data-pjax="true" href="/pycomu/02_health_app/find/main">
+              <a class="dropdown-item d-flex flex-items-baseline" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FIND_FILE_BUTTON&quot;,&quot;repository_id&quot;:335600886,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}" data-hydro-click-hmac="0e2102f1de5af4c3f3d66a2815dd8957542e4677a4e5177e54b3848d54953067" data-ga-click="Repository, find file, location:repo overview" data-hotkey="t" data-pjax="true" href="/pycomu/02_health_app/find/main">
                 <span class="flex-auto">Go to file</span>
                 <span class="text-small color-text-secondary" aria-hidden="true">T</span>
 </a>            </li>
@@ -1238,12 +1238,12 @@
             </li>
             <li class="dropdown-divider" role="none"></li>
             <li>
-              <clipboard-copy value="library/example_db.py" class="dropdown-item cursor-pointer" data-toggle-for="blob-more-options-details">
+              <clipboard-copy value="library/database.py" class="dropdown-item cursor-pointer" data-toggle-for="blob-more-options-details">
                 Copy path
               </clipboard-copy>
             </li>
             <li>
-              <clipboard-copy value="https://github.com/pycomu/02_health_app/blob/868fb60e492e0d7849c0a5d32e622f242c574ddf/library/example_db.py" class="dropdown-item cursor-pointer" data-toggle-for="blob-more-options-details" >
+              <clipboard-copy value="https://github.com/pycomu/02_health_app/blob/868fb60e492e0d7849c0a5d32e622f242c574ddf/library/database.py" class="dropdown-item cursor-pointer" data-toggle-for="blob-more-options-details" >
                 <span class="d-flex flex-items-baseline">
                   <span class="flex-auto">Copy permalink</span>
                 </span>
@@ -1256,7 +1256,7 @@
 
 
     <div class="Box d-flex flex-column flex-shrink-0 mb-3">
-      <include-fragment src="/pycomu/02_health_app/contributors/main/library/example_db.py" class="commit-loader">
+      <include-fragment src="/pycomu/02_health_app/contributors/main/library/database.py" class="commit-loader">
         <div class="Box-header Box-header--blue d-flex flex-items-center">
           <div class="Skeleton avatar avatar-user flex-shrink-0 ml-n1 mr-n1 mt-n1 mb-n1" style="width:24px;height:24px;"></div>
           <div class="Skeleton Skeleton--text col-5 ml-2">&nbsp;</div>
@@ -1284,34 +1284,34 @@
 <div class="Box-header py-2 d-flex flex-column flex-shrink-0 flex-md-row flex-md-items-center">
   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
 
-      9 lines (5 sloc)
+      16 lines (9 sloc)
       <span class="file-info-divider"></span>
-    120 Bytes
+    505 Bytes
   </div>
 
   <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between">
 
     <div class="BtnGroup">
-      <a href="/pycomu/02_health_app/raw/main/library/example_db.py" id="raw-url" role="button" class="btn btn-sm BtnGroup-item ">Raw</a>
-        <a href="/pycomu/02_health_app/blame/main/library/example_db.py" data-hotkey="b" role="button" class="btn js-update-url-with-hash btn-sm BtnGroup-item ">Blame</a>
+      <a href="/pycomu/02_health_app/raw/main/library/database.py" id="raw-url" role="button" class="btn btn-sm BtnGroup-item ">Raw</a>
+        <a href="/pycomu/02_health_app/blame/main/library/database.py" data-hotkey="b" role="button" class="btn js-update-url-with-hash btn-sm BtnGroup-item ">Blame</a>
     </div>
 
     <div>
           <a class="btn-octicon tooltipped tooltipped-nw js-remove-unless-platform"
              data-platforms="windows,mac"
-             href="x-github-client://openRepo/https://github.com/pycomu/02_health_app?branch=main&amp;filepath=library%2Fexample_db.py"
+             href="x-github-client://openRepo/https://github.com/pycomu/02_health_app?branch=main&amp;filepath=library%2Fdatabase.py"
              aria-label="Open this file in GitHub Desktop"
              data-ga-click="Repository, open with desktop">
               <svg class="octicon octicon-device-desktop" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.75 2.5h12.5a.25.25 0 01.25.25v7.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25v-7.5a.25.25 0 01.25-.25zM14.25 1H1.75A1.75 1.75 0 000 2.75v7.5C0 11.216.784 12 1.75 12h3.727c-.1 1.041-.52 1.872-1.292 2.757A.75.75 0 004.75 16h6.5a.75.75 0 00.565-1.243c-.772-.885-1.193-1.716-1.292-2.757h3.727A1.75 1.75 0 0016 10.25v-7.5A1.75 1.75 0 0014.25 1zM9.018 12H6.982a5.72 5.72 0 01-.765 2.5h3.566a5.72 5.72 0 01-.765-2.5z"></path></svg>
           </a>
 
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form js-update-url-with-hash" action="/pycomu/02_health_app/edit/main/library/example_db.py" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="lZPNjIask2k6ZEPacFMHgCAxspgyWYpFVhSLr/8jpzaXza3NLcQppCjLfhONociaUQuG88w2MuzywCGxgYWmww==" />
+          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form js-update-url-with-hash" action="/pycomu/02_health_app/edit/main/library/database.py" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="2nOMcbFsgqkV36sCZwXUWLdD8G+ossGWGDOWsXJeZAGEpjln8U5CFF4bPOIKbXZSeYapB48EWmYyqeDbSz2ySg==" />
             <button class="btn-octicon tooltipped tooltipped-nw" type="submit"
               aria-label="Edit this file" data-hotkey="e" data-disable-with>
               <svg class="octicon octicon-pencil" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg>
             </button>
 </form>
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form" action="/pycomu/02_health_app/delete/main/library/example_db.py" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="jlr1AClS0uojBtvYiQt/l9dvrbkDazGETda3sUPoqgEgIoK+KGo5IAhrcZPA64CNi1+l2VKHFTOuydYJP1kMng==" />
+          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form" action="/pycomu/02_health_app/delete/main/library/database.py" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="05MDCYI1y3MPVm3fB+ZqMChJ7T9oGj6I0UnOo/W6/6VBNP31b8KmSG8IHG6fi4B6iBmnNyoSCl29uaQk4SQ+Yg==" />
             <button class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw" type="submit"
               aria-label="Delete this file" data-disable-with>
               <svg class="octicon octicon-trash" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path></svg>
@@ -1327,38 +1327,67 @@
 <table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip>
       <tr>
         <td id="L1" class="blob-num js-line-number" data-line-number="1"></td>
-        <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class=pl-k>def</span> <span class=pl-en>add_2_fig</span>(<span class=pl-s1>x</span>,<span class=pl-s1>y</span>):</td>
+        <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class=pl-k>import</span> <span class=pl-s1>sqlite3</span></td>
       </tr>
       <tr>
         <td id="L2" class="blob-num js-line-number" data-line-number="2"></td>
-        <td id="LC2" class="blob-code blob-code-inner js-file-line">    <span class=pl-s1>sum</span> <span class=pl-c1>=</span> <span class=pl-s1>x</span><span class=pl-c1>+</span><span class=pl-s1>y</span></td>
+        <td id="LC2" class="blob-code blob-code-inner js-file-line">
+</td>
       </tr>
       <tr>
         <td id="L3" class="blob-num js-line-number" data-line-number="3"></td>
-        <td id="LC3" class="blob-code blob-code-inner js-file-line">    <span class=pl-k>return</span> <span class=pl-s1>sum</span></td>
+        <td id="LC3" class="blob-code blob-code-inner js-file-line">
+</td>
       </tr>
       <tr>
         <td id="L4" class="blob-num js-line-number" data-line-number="4"></td>
-        <td id="LC4" class="blob-code blob-code-inner js-file-line">
-</td>
+        <td id="LC4" class="blob-code blob-code-inner js-file-line"><span class=pl-k>def</span> <span class=pl-en>connect</span>():</td>
       </tr>
       <tr>
         <td id="L5" class="blob-num js-line-number" data-line-number="5"></td>
-        <td id="LC5" class="blob-code blob-code-inner js-file-line"><span class=pl-k>def</span> <span class=pl-en>add_geeting</span>(<span class=pl-s1>name</span>):</td>
+        <td id="LC5" class="blob-code blob-code-inner js-file-line">    <span class=pl-k>return</span> <span class=pl-s1>sqlite3</span>.<span class=pl-en>connect</span>(<span class=pl-s>&quot;health_app.db&quot;</span>)</td>
       </tr>
       <tr>
         <td id="L6" class="blob-num js-line-number" data-line-number="6"></td>
-        <td id="LC6" class="blob-code blob-code-inner js-file-line">    <span class=pl-k>return</span> <span class=pl-s>&quot;Hello &quot;</span> <span class=pl-c1>+</span> <span class=pl-s1>name</span> <span class=pl-c1>+</span> <span class=pl-s>&quot; and welcome&quot;</span></td>
+        <td id="LC6" class="blob-code blob-code-inner js-file-line">
+</td>
       </tr>
       <tr>
         <td id="L7" class="blob-num js-line-number" data-line-number="7"></td>
-        <td id="LC7" class="blob-code blob-code-inner js-file-line">
-</td>
+        <td id="LC7" class="blob-code blob-code-inner js-file-line">   </td>
       </tr>
       <tr>
         <td id="L8" class="blob-num js-line-number" data-line-number="8"></td>
-        <td id="LC8" class="blob-code blob-code-inner js-file-line">
+        <td id="LC8" class="blob-code blob-code-inner js-file-line"><span class=pl-k>def</span> <span class=pl-en>store_account</span>(<span class=pl-s1>connection</span>, <span class=pl-s1>account_name</span>, <span class=pl-s1>account_pin</span>, <span class=pl-s1>account_email</span>):</td>
+      </tr>
+      <tr>
+        <td id="L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="LC9" class="blob-code blob-code-inner js-file-line">     <span class=pl-k>with</span> <span class=pl-s1>connection</span>:</td>
+      </tr>
+      <tr>
+        <td id="L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="LC10" class="blob-code blob-code-inner js-file-line">        <span class=pl-s1>connection</span>.<span class=pl-en>execute</span>(<span class=pl-s>&quot;INSERT INTO account (account_name, account_pin, account_email) VALUES (?, ?, ?)&quot;</span>, (<span class=pl-s1>account_name</span>, <span class=pl-s1>account_pin</span>, <span class=pl-s1>account_email</span>))           <span class=pl-c># arguments(query, tuple of values)</span></td>
+      </tr>
+      <tr>
+        <td id="L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="LC11" class="blob-code blob-code-inner js-file-line">        </td>
+      </tr>
+      <tr>
+        <td id="L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="LC12" class="blob-code blob-code-inner js-file-line">
 </td>
+      </tr>
+      <tr>
+        <td id="L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="LC13" class="blob-code blob-code-inner js-file-line"><span class=pl-s>&#39;&#39;&#39;def read_table(connection):</span></td>
+      </tr>
+      <tr>
+        <td id="L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="LC14" class="blob-code blob-code-inner js-file-line"><span class=pl-s>    with connection:</span></td>
+      </tr>
+      <tr>
+        <td id="L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="LC15" class="blob-code blob-code-inner js-file-line"><span class=pl-s>        return connection.execute().fetchall()&#39;&#39;&#39;</span></td>
       </tr>
 </table>
 
@@ -1378,7 +1407,7 @@
             Copy permalink
           </clipboard-copy>
         </li>
-        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/pycomu/02_health_app/blame/868fb60e492e0d7849c0a5d32e622f242c574ddf/library/example_db.py">View git blame</a></li>
+        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/pycomu/02_health_app/blame/868fb60e492e0d7849c0a5d32e622f242c574ddf/library/database.py">View git blame</a></li>
           <li><a class="dropdown-item" id="js-new-issue" role="menuitem" href="/pycomu/02_health_app/issues/new">Reference in new issue</a></li>
       </ul>
     </details-menu>
@@ -1403,10 +1432,10 @@
      hidden
      data-tagsearch-url="/pycomu/02_health_app/find-definition"
      data-tagsearch-ref="main"
-     data-tagsearch-path="library/example_db.py"
+     data-tagsearch-path="library/database.py"
      data-tagsearch-lang="Python"
-     data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.click_on_symbol&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;click_on_symbol&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/example_db.py&quot;,&quot;user_id&quot;:63949690}}"
-     data-hydro-click-hmac="61c453671958095954d45669b0be0847a3cd50e391d4feea4d2b5426957e12ee">
+     data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.click_on_symbol&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;click_on_symbol&quot;,&quot;repository_id&quot;:335600886,&quot;ref&quot;:&quot;main&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/pycomu/02_health_app/blob/main/library/database.py&quot;,&quot;user_id&quot;:63949690}}"
+     data-hydro-click-hmac="f7c918de9513b4a1fac98b91d539b6f7b29f6f4a1e1c37190ab5e27e8bd93f9f">
   <div class="Popover-message Popover-message--large Popover-message--top-left TagsearchPopover mt-1 mb-4 mx-auto Box color-shadow-large">
     <div class="TagsearchPopover-content js-tagsearch-popover-content overflow-auto" style="will-change:transform;">
     </div>
