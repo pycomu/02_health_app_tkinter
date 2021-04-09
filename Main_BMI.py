@@ -5,11 +5,14 @@ import shutil
 import tkinter as tk
 from tkinter import ttk
 from tkinter.filedialog import askdirectory
+from tkinter import filedialog, messagebox
+
 from tkcalendar import *
 import tkcalendar
 from tkcalendar import Calendar
 import tkinter.messagebox
 from tkcalendar import Calendar, DateEntry
+
 import sqlite3
 
 import pandas as pd
@@ -133,10 +136,10 @@ class LoginPage(tk.Frame):
         button2 = ttk.Button(self, text ="Register", command = lambda : controller.show_frame(RegisterPage))
         button2.grid(row = 3, column = 2, padx = 10, pady = 10)
         
-        button3 = ttk.Button(self, text ="Import", command = lambda : controller.show_frame(Import))
+        button3 = ttk.Button(self, text ="Import", command = lambda : self.import_db())
         button3.grid(row = 3, column = 3, padx = 10, pady = 10)
 
-        button4 = ttk.Button(self, text ="Export", command = lambda : controller.show_frame(LoginPage)) # not for pdf, for database export
+        button4 = ttk.Button(self, text ="Export", command = lambda : self.export_db()) # for database export
         # button4 = ttk.Button(self, text ="Export", command = lambda : ChartPage.export_pdf(self))  # test for class of "ChartPage"      
         button4.grid(row = 3, column = 4, padx = 10, pady = 10)
 
@@ -147,7 +150,25 @@ class LoginPage(tk.Frame):
         Entry1['validatecommand'] = (Entry1.register(controller.validatePIN),'%P')
         Entry1.grid(row=4, column=2)
 
-   
+    def export_db(self): # by this that function can be called even outside that class by <class.function>
+        db_file = "/health_app.db" # complete sqlite database
+        db_source = os.path.realpath(os.getcwd()) + db_file # get working directory -> later from specific folder
+                    
+        file = askdirectory() # ask user for folder to store(copy) sqlite db - user can then use email to send away
+        if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
+            db_destination = file + db_file     
+            shutil.copy (db_source, db_destination) # copy and overwrite file
+            messagebox.showinfo("Notice !","Export of db-file done")
+
+    def import_db(self):
+        files = [('db file', '*.db')] 
+        db_import = filedialog.askopenfilename(initialdir = "./", title = "Select the db File",filetypes = files)
+        if db_import != "": # askopenfilename() return "" if dialog closed with "cancel". -> nothing happens
+            db_file = "/health_app.db"
+            db_destination = os.path.realpath(os.getcwd()) + db_file    
+            shutil.copy (db_import, db_destination) # copy and overwrite file, but name stays health_app.db !
+            messagebox.showinfo("Notice !","Import of db-file done, existing file overwritten !")
+        # if imported db-file is corrupted or unable to read, then app new install with empty database !
         
 class RegisterPage(tk.Frame):       
     def __init__(self, parent, controller): 
@@ -355,10 +376,10 @@ class ChartPage(tk.Frame):
         img.image = render
         img.grid(column=1, row=1)
         
-        button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
+        button = ttk.Button (self, text="Close", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
-        button = ttk.Button (self, text="Export PdF Report", command = lambda : self.export_pdf())
+        button = ttk.Button (self, text="Export Pdf Report", command = lambda : self.export_pdf())
         button.grid(column=1, row=6)
 
     def export_pdf(self): # by this that function can be called even outside that class by <class.function>
@@ -366,16 +387,12 @@ class ChartPage(tk.Frame):
         # the pdf report must be created inside app and stored in specific folder ! ++++++++ open
         pdf_file = "/BMI_report_child_date.pdf" # could include name of child account ?
         pdf_source = os.path.realpath(os.getcwd()) + pdf_file # get working directory -> later from specific folder
-        print("Source ", pdf_source) # to be deleted
-            
+                    
         file = askdirectory() # ask user for folder to store(copy) pdf report; user can then use email to send away
         if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
-            print("new dir ",file) # to be deleted
-            pdf_destination = file + pdf_file
-            print("Destination ", pdf_destination) # to be deleted
-                
+            pdf_destination = file + pdf_file     
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
-
+            messagebox.showinfo("Notice !","Export of pdf report done")
 
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
 
