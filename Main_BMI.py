@@ -33,32 +33,17 @@ c = conn.cursor()
 # Last_weight
 # Last_height
 # etc.
-"""
-"account_id"	INTEGER,
-"account_name"	TEXT,
-"account_pin"	INTEGER,
-"account_email"	TEXT,
-"account_create_date" TEXT,
 
-"child_id"	INTEGER,
-"child_first_name"	TEXT,
-"child_last_name"	TEXT,
-"child_bday"	TEXT,
-"child_gender"	TEXT,
-"child_country"	TEXT,
-"child_create_date"	TEXT,
-"account_id"	INTEGER,
-
-"logfile_id"	integer,
-"logfile_timestamp"	TEXT,
-"logfile_weight"	REAL,
-"logfile_height"	REAL,
-"logfile_bmi"	REAL,
-"logfile_age_act"	REAL,
-"child_id"	INTEGER,
+def read_terms():
+    c.execute("select date_terms, terms_version from terms")
+    date_terms =[]
+    for row in c.fetchall():
+        # date_terms.append(row[0])
+        print(date_terms)
+        return TRUE if date_terms != "" # True if terms were confirmed
 
 
-"""
+
 # ++++++ functions for GUI, layout window and its different frames
 class health_app(tk.Tk):    
     def __init__(self, *args, **kwargs): 
@@ -83,16 +68,7 @@ class health_app(tk.Tk):
         for F in (LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of all frames
             frame = F(container, self)  
             self.frames[F] = frame
-            # label = ttk.Label(self, text ="x")
-            # rows = 4
-            # columns = 10
-            # print(rows, columns, height, width)
-            # for rows in range(height):
-            #     frame.rowconfigure(rows, weight=1)
-            #     for columns in range(width):
-            #         frame.columnconfigure(columns, weight=1) 
-            #         frame.Label(F, text='R%s/C%s'%(rows,columns), borderwidth=1 ).grid(row=rows,column=columns) # can be deleted
-            
+                        
             frame.grid(row = 0, column = 0, sticky ="nsew") # each frame has the same grid parameters for layout
         
             
@@ -399,6 +375,12 @@ class ChartPage(tk.Frame):
 if __name__ == "__main__":
 
     app = health_app()
+    
+    if read_terms == False:
+        controller.show_frame(RegisterPage)
+    else:
+        controller.show_frame(LoginPage)
+
     app.mainloop()
 
     
