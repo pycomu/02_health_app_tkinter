@@ -7,7 +7,8 @@ from tkinter import ttk
 # import only asksaveasfile from filedialog 
 # which is used to save file in any extension 
 from tkinter.filedialog import asksaveasfile 
-  
+from tkinter import filedialog
+
 root = Tk() 
 root.geometry('200x300') 
   
@@ -21,24 +22,21 @@ def save1():
     file = asksaveasfile(filetypes = files, defaultextension = files) 
 
 def save2():
-    text2save = "./text.txt"
-    files = [('All Files', '*.*'),  
-             ('Python Files', '*.db'), 
-             ('Text Document', '*.pdf')] 
-    f = asksaveasfile(mode='w', defaultextension = files)
-    if f is None: # asksaveasfile return `None` if dialog closed with "cancel".
-        return
-    f.write(text2save)
-    f.close()
+    
+    files = [('db file', '*.db')] 
+    f = filedialog.askopenfilename(initialdir = "./", title = "Select the db File",filetypes = files)
+    print("you have choosen :",f)
 
 # save as file dialog - how to not allow overwrite
 # https://stackoverflow.com/questions/29492832/save-as-file-dialog-how-to-not-allow-overwrite
 
-def save3(self):
-        file = get_selection()
+import os
+
+def save3():
+        file = "./text.txt"
         if os.path.exists(file):
             if os.path.isdir(file):
-                self.master.bell()
+                # self.master.bell()
                 return
             d = Dialog(self.top,
                        title="Overwrite Existing File",
@@ -52,7 +50,7 @@ def save3(self):
             if not os.path.isdir(head):
                 self.master.bell()
                 return
-        self.quit(file)
+        quit(file)
 
 
 

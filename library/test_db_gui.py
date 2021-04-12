@@ -5,22 +5,28 @@ import shutil
 import tkinter as tk
 from tkinter import ttk
 from tkinter.filedialog import askdirectory
-from tkinter import filedialog, messagebox
-
 from tkcalendar import *
 import tkcalendar
 from tkcalendar import Calendar
 import tkinter.messagebox
 from tkcalendar import Calendar, DateEntry
-
 import sqlite3
 
 import pandas as pd
 from pandas import Series,DataFrame
 from PIL import Image, ImageTk
 
-conn = sqlite3.connect("./health_app.db")
-c = conn.cursor()
+# Mimoona
+import database
+
+# Mimoona remove next two lines
+#conn = sqlite3.connect("./health_app.db")
+#c = conn.cursor()
+
+# Mimoona
+connection = database.connect()
+
+# end
 
 # Global variables along database structure - if required ?
 
@@ -39,7 +45,6 @@ c = conn.cursor()
 "account_pin"	INTEGER,
 "account_email"	TEXT,
 "account_create_date" TEXT,
-
 "child_id"	INTEGER,
 "child_first_name"	TEXT,
 "child_last_name"	TEXT,
@@ -48,7 +53,6 @@ c = conn.cursor()
 "child_country"	TEXT,
 "child_create_date"	TEXT,
 "account_id"	INTEGER,
-
 "logfile_id"	integer,
 "logfile_timestamp"	TEXT,
 "logfile_weight"	REAL,
@@ -56,8 +60,6 @@ c = conn.cursor()
 "logfile_bmi"	REAL,
 "logfile_age_act"	REAL,
 "child_id"	INTEGER,
-
-
 """
 # ++++++ functions for GUI, layout window and its different frames
 class health_app(tk.Tk):    
@@ -78,6 +80,14 @@ class health_app(tk.Tk):
         container.pack(side = "top", fill = "both", expand = True) 
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
+        
+        # Mimoona
+        self.account_name = tk.StringVar()
+        self.account_pin = tk.IntVar()
+        self.account_email = tk.StringVar()
+        
+        
+        
         
         self.frames = {}  
         for F in (LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of all frames
@@ -136,44 +146,26 @@ class LoginPage(tk.Frame):
         button2 = ttk.Button(self, text ="Register", command = lambda : controller.show_frame(RegisterPage))
         button2.grid(row = 3, column = 2, padx = 10, pady = 10)
         
-        button3 = ttk.Button(self, text ="Import", command = lambda : self.import_db())
+        button3 = ttk.Button(self, text ="Import", command = lambda : controller.show_frame(Import))
         button3.grid(row = 3, column = 3, padx = 10, pady = 10)
 
-        button4 = ttk.Button(self, text ="Export", command = lambda : self.export_db()) # for database export
+        button4 = ttk.Button(self, text ="Export", command = lambda : controller.show_frame(LoginPage)) # not for pdf, for database export
         # button4 = ttk.Button(self, text ="Export", command = lambda : ChartPage.export_pdf(self))  # test for class of "ChartPage"      
         button4.grid(row = 3, column = 4, padx = 10, pady = 10)
 
         label1 = ttk.Label(self, text="PIN (4 digits)", font=("Arial Italic", 10))
         label1.grid(row=4, column=1)
-      
+        
         Entry1 = ttk.Entry(self,width=10, show="*",validate="key")
         Entry1['validatecommand'] = (Entry1.register(controller.validatePIN),'%P')
         Entry1.grid(row=4, column=2)
-
-    def export_db(self): # by this that function can be called even outside that class by <class.function>
-        db_file = "/health_app.db" # complete sqlite database
-        db_source = os.path.realpath(os.getcwd()) + db_file # get working directory -> later from specific folder
-                    
-        file = askdirectory() # ask user for folder to store(copy) sqlite db - user can then use email to send away
-        if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
-            db_destination = file + db_file     
-            shutil.copy (db_source, db_destination) # copy and overwrite file
-            messagebox.showinfo("Notice !","Export of db-file done")
-
-    def import_db(self):
-        files = [('db file', '*.db')] 
-        db_import = filedialog.askopenfilename(initialdir = "./", title = "Select the db File",filetypes = files)
-        if db_import != "": # askopenfilename() return "" if dialog closed with "cancel". -> nothing happens
-            db_file = "/health_app.db"
-            db_destination = os.path.realpath(os.getcwd()) + db_file    
-            shutil.copy (db_import, db_destination) # copy and overwrite file, but name stays health_app.db !
-            messagebox.showinfo("Notice !","Import of db-file done, existing file overwritten !")
-        # if imported db-file is corrupted or unable to read, then app new install with empty database !
+      
         
 class RegisterPage(tk.Frame):       
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
-        
+        # Mimoona 
+                
         label = ttk.Label(self, text ="Register Page",font="bold")        
         label.grid(row = 0, column = 0, padx = 10, pady = 10)
 
@@ -189,18 +181,18 @@ class RegisterPage(tk.Frame):
         label4 = ttk.Label(self, text="Re-enter PIN", font=("Arial Italic", 10))
         label4.grid(row=4,column=1)
 
-
-        Entry1 = ttk.Entry(self,width=10) # field entry for account E-Mail
+                
+        Entry1 = ttk.Entry(self, textvariable= account_email, width=10) # field entry for account E-Mail
         Entry1.grid(row=1, column=2)
         
-        Entry2 = ttk.Entry(self,width=10, show="*",validate="key") # Account Name
+        Entry2 = ttk.Entry(self, textvariable= account_name, width=10, show="*",validate="key") # Account Name
         Entry2['validatecommand'] = (Entry2.register(controller.validateString),'%P')
         Entry2.grid(row=2, column=2)
         label2 = ttk.Label(self, text="* Enter only 10 charecters",foreground='red', font=("Arial Italic", 10))
         
         label2.grid(row=2,column=3)
 
-        Entry3 = ttk.Entry(self,width=10, show="*",validate="key") # PIN
+        Entry3 = ttk.Entry(self,variable= account_pin, width=10, show="*",validate="key") # PIN
         Entry3['validatecommand'] = (Entry3.register(controller.validatePIN),'%P')
         Entry3.grid(row=3, column=2)
 
@@ -213,6 +205,23 @@ class RegisterPage(tk.Frame):
 
         button2 = ttk.Button(self, text ="Cancel", command = lambda : controller.show_frame(LoginPage)) 
         button2.grid(row = 5, column = 2, padx = 10, pady = 10) 
+        
+        # Mimoona : one method to get value direck from widget
+        #database.store_account(connection, Entry2.get(), Entry3.get(), Entry1.get())
+        
+        # Mimoona : other way to get value from instance of StrgVar()
+        database.store_account(connection,account_name.get(), account_pin.get(), account_email.get())
+      
+        
+        '''# Mimoona
+        if Entry3 == Entry4:
+            database.store_account(connection, account_name.get(), account_pin.get(), account_email.get())
+        else:
+            print(" PIN does not match")   #  we might clear the entryboxes here'''
+        
+        
+        
+    
 
 class ChildPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
@@ -376,10 +385,10 @@ class ChartPage(tk.Frame):
         img.image = render
         img.grid(column=1, row=1)
         
-        button = ttk.Button (self, text="Close", command = lambda:  controller.show_frame(MainPage))
+        button = ttk.Button (self, text="Close.", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
-        button = ttk.Button (self, text="Export Pdf Report", command = lambda : self.export_pdf())
+        button = ttk.Button (self, text="Export PdF Report", command = lambda : self.export_pdf())
         button.grid(column=1, row=6)
 
     def export_pdf(self): # by this that function can be called even outside that class by <class.function>
@@ -387,12 +396,16 @@ class ChartPage(tk.Frame):
         # the pdf report must be created inside app and stored in specific folder ! ++++++++ open
         pdf_file = "/BMI_report_child_date.pdf" # could include name of child account ?
         pdf_source = os.path.realpath(os.getcwd()) + pdf_file # get working directory -> later from specific folder
-                    
+        print("Source ", pdf_source) # to be deleted
+            
         file = askdirectory() # ask user for folder to store(copy) pdf report; user can then use email to send away
         if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
-            pdf_destination = file + pdf_file     
+            print("new dir ",file) # to be deleted
+            pdf_destination = file + pdf_file
+            print("Destination ", pdf_destination) # to be deleted
+                
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
-            messagebox.showinfo("Notice !","Export of pdf report done")
+
 
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
 
@@ -401,4 +414,3 @@ if __name__ == "__main__":
     app = health_app()
     app.mainloop()
 
-    
