@@ -19,6 +19,8 @@ import pandas as pd
 from pandas import Series,DataFrame
 from PIL import Image, ImageTk
 
+from fpdf import FPDF  # fpdf class
+
 conn = sqlite3.connect("./health_app.db")
 c = conn.cursor()
 
@@ -414,9 +416,37 @@ class ChartPage(tk.Frame):
         button.grid(column=1, row=6)
 
     def export_pdf(self): # by this that function can be called even outside that class by <class.function>
+        # create pdf first
+        pdf_w=210
+        pdf_h=297
+        f = 0
+        child_first ="Max"
+
+        pdf = FPDF('P', 'mm', 'A4')
+        pdf.add_page()
+        pdf.set_xy(0.0,0.0)
+        pdf.set_font('Arial', 'B', 20)
+        pdf.cell(210, 20, "BMI History Report of " + child_first+ child_first+ child_first,f,1, "C") # always centered in middle of page
+        pdf.set_font('Arial', '', 12)
+        pdf.cell(210, 12, 'Please consider our legal terms and conditions you agreed on by using this app', f, 1, 'L')
+        pdf.cell(210, 12, 'Creation date: <current_date>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child First Name :		<child_first_name>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child Last Name :		<child_last_name>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child Birthday :		    <child_bday>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child gender :		    <child_gender>', f, 1, 'L')
+
+        pdf.set_font('Arial', 'B', 12)
+        pdf.cell(210, 12, 'Last BMI measurement on <logfile_date>', f, 1, 'L')
+        pdf.set_font('Arial', '', 12)
+        pdf.cell(210, 12, 'Height in m:		<last logfile entry>', f, 1, 'L')
+        pdf.cell(210, 12, 'Weight in Kg:	<last logfile entry>', f, 1, 'L')
+        pdf.cell(210, 12, 'BMI calculated:	<last logfile entry>', f, 1, 'L')
+
+        pdf.image("./growthchart_example2.png",60,140,100,155)
+        pdf.output('BMI_report_child_date_V2.pdf', 'F')
         
-        # the pdf report must be created inside app and stored in specific folder ! ++++++++ open
-        pdf_file = "/BMI_report_child_date.pdf" # could include name of child account ?
+        # now export created file
+        pdf_file = "/BMI_report_child_date_V2.pdf" # could include name of child account ?
         pdf_source = os.path.realpath(os.getcwd()) + pdf_file # get working directory -> later from specific folder
                     
         file = askdirectory() # ask user for folder to store(copy) pdf report; user can then use email to send away
