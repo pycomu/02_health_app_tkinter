@@ -35,12 +35,18 @@ c = conn.cursor()
 # etc.
 
 def read_terms():
-    c.execute("select date_terms, terms_version from terms")
-    date_terms =[]
-    for row in c.fetchall():
-        # date_terms.append(row[0])
-        print(date_terms)
-        return TRUE if date_terms != "" # True if terms were confirmed
+    c.execute("select date_confirm, terms_version from terms")
+    content = c.fetchone()
+    return False if content == None else True
+
+def store_account(account_name, account_pin, account_email, account_create_date):
+     with conn:
+        c.execute("INSERT INTO account (account_name, account_pin, account_email, account_create_date) VALUES (?, ?, ?, ?)", (account_name, account_pin, account_email,account_create_date))
+
+def store_confirm(date_confirm, terms_version):
+     with conn:
+        c.execute("INSERT INTO terms (date_confirm, terms_version) VALUES (?, ?)", (date_confirm, terms_version))
+
 
 
 
@@ -65,24 +71,21 @@ class health_app(tk.Tk):
         container.grid_columnconfigure(0, weight = 1)
         
         self.frames = {}  
-        for F in (LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of all frames
+        for F in (ConfirmPage, LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of all frames
             frame = F(container, self)  
             self.frames[F] = frame
                         
             frame.grid(row = 0, column = 0, sticky ="nsew") # each frame has the same grid parameters for layout
-        
-            
 
-        self.show_frame(LoginPage)
+        if read_terms() == False:
+            self.show_frame(ConfirmPage)
+        else:
+            self.show_frame(LoginPage)
   
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
 
-    # read out database for gloabl variables, pointers for db navigation and array list for tkinter comboboxes
-    def update_combo(self):
-        pass
-    
     #validate the numeirc field - Datatype and Length
     def validatePIN(self,P):
          
@@ -98,6 +101,48 @@ class health_app(tk.Tk):
             return True
          else:
             return False
+
+class ConfirmPage(tk.Frame):       
+    def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
+        tk.Frame.__init__(self, parent)
+        
+        label = ttk.Label(self, text ="Terms & Confirmation Page", font="bold")        
+        label.grid(row = 0, column = 1, padx = 10, pady = 10)
+
+        confirmed=tk.IntVar()
+        checkbutton = tk.Checkbutton(self, variable=confirmed,text="Agreed to our terms & conditions by checking this ckeck box",
+         command = lambda : continue_check())
+        # checkbutton = tk.Checkbutton(self, text="Agreed to our terms & conditions by checking this ckeck box",
+        # command = continue_check())
+        checkbutton.grid(row=1, column=1, columnspan = 2)
+        # checkbutton.bind("<<ListboxSelect>>", lambda event: continue_check())
+
+        button1 = ttk.Button(self, text ="Continue", command = lambda : controller.show_frame(RegisterPage))
+        button1.grid(row = 2, column = 1, padx = 10, pady = 10)
+        button1.configure(state="disabled")
+
+        # placeholder for legal text content
+        terms_text = """AGREEMENT TO TERMS, 
+        These Terms and Conditions constitute a legally 
+        binding agreement made between you, whether personally or on 
+        behalf of an entity (“you”) and [business entity name] (“we,” “us” or “our”), 
+        concerning your access to and use of the [website name.com] website as well as 
+        any other media form, media channel, mobile website or mobile application related, 
+        linked, or otherwise connected thereto (collectively, the “Site”). You agree that by
+         accessing the Site, you have read, understood, and agree to be bound by all of these 
+         Terms and Conditions Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS and CONDITIONS, 
+         THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SITE AND YOU MUST DISCONTINUE USE IMMEDIATELY."""  
+
+        text_box = tk.Text(self, height=20, width=40, padx=15, pady=15)
+        text_box.grid(column=1, row=3, columnspan=4, rowspan=4)
+        text_box.insert(1.0, terms_text)
+
+        def continue_check():
+            if confirmed.get() == 1:
+                button1.configure(state="normal")
+            else:
+                button1.configure(state="disabled")
+
 
 class LoginPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
@@ -166,29 +211,39 @@ class RegisterPage(tk.Frame):
         label4.grid(row=4,column=1)
 
 
-        Entry1 = ttk.Entry(self,width=10) # field entry for account E-Mail
+        Entry1 = ttk.Entry(self,width=20) # field entry for account E-Mail
         Entry1.grid(row=1, column=2)
         
-        Entry2 = ttk.Entry(self,width=10, show="*",validate="key") # Account Name
+        Entry2 = ttk.Entry(self,width=20, validate="key") # Account Name
         Entry2['validatecommand'] = (Entry2.register(controller.validateString),'%P')
         Entry2.grid(row=2, column=2)
-        label2 = ttk.Label(self, text="* Enter only 10 charecters",foreground='red', font=("Arial Italic", 10))
+        label2 = ttk.Label(self, text="* Enter only 20 charecters",foreground='red', font=("Arial Italic", 10))
         
         label2.grid(row=2,column=3)
 
-        Entry3 = ttk.Entry(self,width=10, show="*",validate="key") # PIN
+        Entry3 = ttk.Entry(self,width=20, show="*",validate="key") # PIN
         Entry3['validatecommand'] = (Entry3.register(controller.validatePIN),'%P')
         Entry3.grid(row=3, column=2)
 
-        Entry4 = ttk.Entry(self,width=10, show="*",validate="key") # Re enter PIN
+        Entry4 = ttk.Entry(self,width=20, show="*",validate="key") # Re enter PIN
         Entry4['validatecommand'] = (Entry4.register(controller.validatePIN),'%P')
         Entry4.grid(row=4, column=2)
-
-        button1 = ttk.Button(self, text ="Submit", command = lambda : controller.show_frame(LoginPage)) 
-        button1.grid(row = 5, column = 1, padx = 10, pady = 10)
+    
+        button1 = ttk.Button(self, text ="Submit", command = lambda : submit_account()) 
+        button1.grid(row = 6, column = 1,  padx = 10, pady = 10)
 
         button2 = ttk.Button(self, text ="Cancel", command = lambda : controller.show_frame(LoginPage)) 
-        button2.grid(row = 5, column = 2, padx = 10, pady = 10) 
+        button2.grid(row = 6, column = 2, padx = 10, pady = 10) 
+
+        def submit_account():
+            account_name = Entry2.get()
+            account_pin = Entry4.get()
+            account_email = Entry1.get()
+            account_create_date = "2021-04-15"
+            store_account(account_name, account_pin, account_email, account_create_date)
+            store_confirm("2021-04-15", "1.0")
+            print("Confirmed Value is :",confirmed.get())
+            controller.show_frame(LoginPage)
 
 class ChildPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
@@ -376,11 +431,7 @@ if __name__ == "__main__":
 
     app = health_app()
     
-    if read_terms == False:
-        controller.show_frame(RegisterPage)
-    else:
-        controller.show_frame(LoginPage)
-
+    
     app.mainloop()
 
     
