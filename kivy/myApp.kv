@@ -1,0 +1,24 @@
+<my_boxlayout>:
+    orientation: 'vertical'
+    Label:
+        theme_text_color: "Custom"
+        text_color: 1, 0, 0, 1
+        text: "Button in Boxlayout with action event"
+        font_size: 30
+    BoxLayout:
+        orientation: 'horizontal'
+        Button:
+            text: "Left Button here"
+            font_size: 30
+            on_release: root.pushed('left')
+        Button:
+            text: "Right Button here"
+            font_size: 30
+            on_release: root.pushed('right')
+    Label:
+        id: result
+        font_size: 30
+        text: ''
+        
+
+
