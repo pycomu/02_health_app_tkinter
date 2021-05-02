@@ -2,8 +2,9 @@ from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
-from kivy.lang import Builder
+from kivy.lang import Builder # required to have screen definition inside py file
 
+# screen definition
 page = '''
 Screen:
     GridLayout:
@@ -26,7 +27,7 @@ Screen:
 
 class My3App(App): # main class to build the Login Screen
     def build(self):
-        self.login = Builder.load_string(page)
+        self.login = Builder.load_string(page) # read in screen definition above
         return self.login
     
 
