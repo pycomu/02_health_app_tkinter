@@ -12,12 +12,6 @@ import tkcalendar
 from tkcalendar import Calendar
 import tkinter.messagebox
 from tkcalendar import Calendar, DateEntry
-<<<<<<< HEAD
-from datetime import date
-#from ttkthemes import ThemedTk
-=======
-
->>>>>>> 270f08e920402267e94a5be49fd66f236e5019ec
 import sqlite3
 
 import pandas as pd
@@ -164,17 +158,10 @@ class LoginPage(tk.Frame):
         button2 = ttk.Button(self, text ="Register", style='My.TButton', command = lambda : controller.show_frame(RegisterPage))
         button2.grid(row = 3, column = 2, padx = 10, pady = 10)
         
-<<<<<<< HEAD
-        button3 = ttk.Button(self, text ="Import", style='My.TButton', command = lambda : controller.show_frame(Import))
-        button3.grid(row = 3, column = 3, padx = 10, pady = 10)
-
-        button4 = ttk.Button(self, text ="Export", style='My.TButton', command = lambda : controller.show_frame(LoginPage)) # not for pdf, for database export
-=======
         button3 = ttk.Button(self, text ="Import", command = lambda : self.import_db())
         button3.grid(row = 3, column = 3, padx = 10, pady = 10)
 
         button4 = ttk.Button(self, text ="Export", command = lambda : self.export_db()) # for database export
->>>>>>> 270f08e920402267e94a5be49fd66f236e5019ec
         # button4 = ttk.Button(self, text ="Export", command = lambda : ChartPage.export_pdf(self))  # test for class of "ChartPage"      
         button4.grid(row = 3, column = 4, padx = 10, pady = 10)
 
@@ -242,14 +229,6 @@ class RegisterPage(tk.Frame):
         Entry4 = ttk.Entry(self,width=20, show="*",validate="key") # Re enter PIN
         Entry4['validatecommand'] = (Entry4.register(controller.validatePIN),'%P')
         Entry4.grid(row=4, column=2)
-<<<<<<< HEAD
-
-        button1 = ttk.Button(self, text ="Submit", style='My.TButton', command = lambda : controller.show_frame(LoginPage)) 
-        button1.grid(row = 5, column = 1, padx = 10, pady = 10)
-
-        button2 = ttk.Button(self, text ="Cancel", style='My.TButton',  command = lambda : controller.show_frame(LoginPage)) 
-        button2.grid(row = 5, column = 2, padx = 10, pady = 10) 
-=======
     
         button1 = ttk.Button(self, text ="Submit", command = lambda : submit_account()) 
         button1.grid(row = 6, column = 1,  padx = 10, pady = 10)
@@ -266,7 +245,6 @@ class RegisterPage(tk.Frame):
             store_confirm("2021-04-15", "1.0")
             print("Confirmed Value is :",confirmed.get())
             controller.show_frame(LoginPage)
->>>>>>> 270f08e920402267e94a5be49fd66f236e5019ec
 
 class ChildPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
@@ -440,17 +418,10 @@ class ChartPage(tk.Frame):
         img.image = render
         img.grid(column=1, row=1)
         
-<<<<<<< HEAD
-        button = ttk.Button (self, text="Close.", style='My.TButton', command = lambda:  controller.show_frame(MainPage))
-        button.grid(column=1, row=3)
-        
-        button = ttk.Button (self, text="Export PdF Report", style='My.TButton', command = lambda : self.export_pdf())
-=======
         button = ttk.Button (self, text="Close", command = lambda:  controller.show_frame(MainPage))
         button.grid(column=1, row=3)
         
         button = ttk.Button (self, text="Export Pdf Report", command = lambda : self.export_pdf())
->>>>>>> 270f08e920402267e94a5be49fd66f236e5019ec
         button.grid(column=1, row=6)
 
     def export_pdf(self): # by this that function can be called even outside that class by <class.function>
@@ -491,13 +462,8 @@ class ChartPage(tk.Frame):
         if file != "": # askdirectory() return "" if dialog closed with "cancel". -> nothing happens
             pdf_destination = file + pdf_file     
             shutil.copy (pdf_source, pdf_destination) # copy and overwrite file
-<<<<<<< HEAD
-
-        
-=======
             messagebox.showinfo("Notice !","Export of pdf report done")
 
->>>>>>> 270f08e920402267e94a5be49fd66f236e5019ec
 # ++++++ functions for database modifications e.g. insert data, delete data, update data
 
 if __name__ == "__main__":
