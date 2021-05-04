@@ -12,6 +12,7 @@ import tkcalendar
 from tkcalendar import Calendar
 import tkinter.messagebox
 from tkcalendar import Calendar, DateEntry
+from datetime import date
 import sqlite3
 
 import pandas as pd
