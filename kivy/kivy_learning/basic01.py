@@ -17,11 +17,11 @@ class LoginScreen(GridLayout): # definition of screen in gridlayout method
         self.add_widget(self.password)
 
 
-class MyApp(App): # main class to build the Login Screen
+class basic1App(App): # main class to build the Login Screen
 
     def build(self):
         return LoginScreen()
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    basic1App().run()

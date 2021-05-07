@@ -8,11 +8,11 @@ class LoginScreen(GridLayout): # definition of screen in gridlayout method
             
 
 
-class My2App(App): # main class to build the Login Screen, looking for my2.kv file with definitions
+class basic2App(App): # main class to build the Login Screen, looking for basic2.kv file with definitions
 
     def build(self):
         return LoginScreen()
 
 
 if __name__ == '__main__':
-    My2App().run()
+    basic2App().run()

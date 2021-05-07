@@ -25,7 +25,7 @@ Screen:
 '''
 
 
-class My3App(App): # main class to build the Login Screen
+class basic3App(App): # main class to build the Login Screen
     def build(self):
         self.login = Builder.load_string(page) # read in screen definition above
         return self.login
@@ -33,4 +33,4 @@ class My3App(App): # main class to build the Login Screen
 
 
 if __name__ == '__main__':
-    My3App().run()
+    basic3App().run()
