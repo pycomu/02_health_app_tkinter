@@ -7,21 +7,21 @@ from kivy.uix.scrollview import ScrollView
 
 KV = '''
 MDScreen:
-    MDFloatLayout:
-
+    MDGridLayout:
+        cols: 1
         text_input: text_input
 
         MDTextField:
             id: text_input 
             hint_text: "Enter message here"
-            pos_hint:{'center_x': 0.5, 'center_y': 0.9}
-            size_hint_x: .8
+            #pos_hint:{'center_x': 0.5, 'center_y': 0.9}
+            #size_hint_x: .8
             text: ""
             
         
         MDRaisedButton:
             text: "Send message"
-            pos_hint:{'center_x': 0.5, 'center_y': 0.8}
+            #pos_hint:{'center_x': 0.5, 'center_y': 0.8}
             size_hint_x: 1
             md_bg_color: 0,.4,.8,1
             on_release: app.add_item()
@@ -29,7 +29,7 @@ MDScreen:
         ScrollView:
             do_scroll_x: False
             do_scroll_y: True
-            pos_hint:{'center_x': 0.5, 'center_y': 0.2}
+            #pos_hint:{'center_x': 0.5, 'center_y': 0.2}
             MDList:                
                 id: message_list
                 
