@@ -17,13 +17,13 @@
         text: "This text will be overwritten !"
         font_size: 40
 
-    FloatLayout:
-        Button:
-            pos_hint: {'center_x':0.5,"y": 0.1}
-            text: "Push here"
-            font_size: 40
-            on_release:
-                root.change_label_text() # callback function to change text in label widget
+    #FloatLayout:  # not required
+    Button:
+        #pos_hint: {'center_x':0.5,"y": 0.1}
+        text: "Push here"
+        font_size: 40
+        on_release:
+            root.change_label_text() # callback function to change text in label widget
 
 
     
