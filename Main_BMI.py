@@ -19,6 +19,8 @@ import pandas as pd
 from pandas import Series,DataFrame
 from PIL import Image, ImageTk
 
+from fpdf import FPDF  # fpdf class
+
 conn = sqlite3.connect("./health_app.db")
 c = conn.cursor()
 
@@ -33,32 +35,23 @@ c = conn.cursor()
 # Last_weight
 # Last_height
 # etc.
-"""
-"account_id"	INTEGER,
-"account_name"	TEXT,
-"account_pin"	INTEGER,
-"account_email"	TEXT,
-"account_create_date" TEXT,
 
-"child_id"	INTEGER,
-"child_first_name"	TEXT,
-"child_last_name"	TEXT,
-"child_bday"	TEXT,
-"child_gender"	TEXT,
-"child_country"	TEXT,
-"child_create_date"	TEXT,
-"account_id"	INTEGER,
+def read_terms():
+    c.execute("select date_confirm, terms_version from terms")
+    content = c.fetchone()
+    return False if content == None else True
 
-"logfile_id"	integer,
-"logfile_timestamp"	TEXT,
-"logfile_weight"	REAL,
-"logfile_height"	REAL,
-"logfile_bmi"	REAL,
-"logfile_age_act"	REAL,
-"child_id"	INTEGER,
+def store_account(account_name, account_pin, account_email, account_create_date):
+     with conn:
+        c.execute("INSERT INTO account (account_name, account_pin, account_email, account_create_date) VALUES (?, ?, ?, ?)", (account_name, account_pin, account_email,account_create_date))
+
+def store_confirm(date_confirm, terms_version):
+     with conn:
+        c.execute("INSERT INTO terms (date_confirm, terms_version) VALUES (?, ?)", (date_confirm, terms_version))
 
 
-"""
+
+
 # ++++++ functions for GUI, layout window and its different frames
 class health_app(tk.Tk):    
     def __init__(self, *args, **kwargs): 
@@ -80,33 +73,21 @@ class health_app(tk.Tk):
         container.grid_columnconfigure(0, weight = 1)
         
         self.frames = {}  
-        for F in (LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of all frames
+        for F in (ConfirmPage, LoginPage,RegisterPage, MainPage, ChildPage, ChartPage):  # define names of all frames
             frame = F(container, self)  
             self.frames[F] = frame
-            # label = ttk.Label(self, text ="x")
-            # rows = 4
-            # columns = 10
-            # print(rows, columns, height, width)
-            # for rows in range(height):
-            #     frame.rowconfigure(rows, weight=1)
-            #     for columns in range(width):
-            #         frame.columnconfigure(columns, weight=1) 
-            #         frame.Label(F, text='R%s/C%s'%(rows,columns), borderwidth=1 ).grid(row=rows,column=columns) # can be deleted
-            
+                        
             frame.grid(row = 0, column = 0, sticky ="nsew") # each frame has the same grid parameters for layout
-        
-            
 
-        self.show_frame(LoginPage)
+        if read_terms() == False:
+            self.show_frame(ConfirmPage)
+        else:
+            self.show_frame(LoginPage)
   
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
 
-    # read out database for gloabl variables, pointers for db navigation and array list for tkinter comboboxes
-    def update_combo(self):
-        pass
-    
     #validate the numeirc field - Datatype and Length
     def validatePIN(self,P):
          
@@ -122,6 +103,48 @@ class health_app(tk.Tk):
             return True
          else:
             return False
+
+class ConfirmPage(tk.Frame):       
+    def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
+        tk.Frame.__init__(self, parent)
+        
+        label = ttk.Label(self, text ="Terms & Confirmation Page", font="bold")        
+        label.grid(row = 0, column = 1, padx = 10, pady = 10)
+
+        confirmed=tk.IntVar()
+        checkbutton = tk.Checkbutton(self, variable=confirmed,text="Agreed to our terms & conditions by checking this ckeck box",
+         command = lambda : continue_check())
+        # checkbutton = tk.Checkbutton(self, text="Agreed to our terms & conditions by checking this ckeck box",
+        # command = continue_check())
+        checkbutton.grid(row=1, column=1, columnspan = 2)
+        # checkbutton.bind("<<ListboxSelect>>", lambda event: continue_check())
+
+        button1 = ttk.Button(self, text ="Continue", command = lambda : controller.show_frame(RegisterPage))
+        button1.grid(row = 2, column = 1, padx = 10, pady = 10)
+        button1.configure(state="disabled")
+
+        # placeholder for legal text content
+        terms_text = """AGREEMENT TO TERMS, 
+        These Terms and Conditions constitute a legally 
+        binding agreement made between you, whether personally or on 
+        behalf of an entity (“you”) and [business entity name] (“we,” “us” or “our”), 
+        concerning your access to and use of the [website name.com] website as well as 
+        any other media form, media channel, mobile website or mobile application related, 
+        linked, or otherwise connected thereto (collectively, the “Site”). You agree that by
+         accessing the Site, you have read, understood, and agree to be bound by all of these 
+         Terms and Conditions Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS and CONDITIONS, 
+         THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SITE AND YOU MUST DISCONTINUE USE IMMEDIATELY."""  
+
+        text_box = tk.Text(self, height=20, width=40, padx=15, pady=15)
+        text_box.grid(column=1, row=3, columnspan=4, rowspan=4)
+        text_box.insert(1.0, terms_text)
+
+        def continue_check():
+            if confirmed.get() == 1:
+                button1.configure(state="normal")
+            else:
+                button1.configure(state="disabled")
+
 
 class LoginPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
@@ -190,29 +213,39 @@ class RegisterPage(tk.Frame):
         label4.grid(row=4,column=1)
 
 
-        Entry1 = ttk.Entry(self,width=10) # field entry for account E-Mail
+        Entry1 = ttk.Entry(self,width=20) # field entry for account E-Mail
         Entry1.grid(row=1, column=2)
         
-        Entry2 = ttk.Entry(self,width=10, show="*",validate="key") # Account Name
+        Entry2 = ttk.Entry(self,width=20, validate="key") # Account Name
         Entry2['validatecommand'] = (Entry2.register(controller.validateString),'%P')
         Entry2.grid(row=2, column=2)
-        label2 = ttk.Label(self, text="* Enter only 10 charecters",foreground='red', font=("Arial Italic", 10))
+        label2 = ttk.Label(self, text="* Enter only 20 charecters",foreground='red', font=("Arial Italic", 10))
         
         label2.grid(row=2,column=3)
 
-        Entry3 = ttk.Entry(self,width=10, show="*",validate="key") # PIN
+        Entry3 = ttk.Entry(self,width=20, show="*",validate="key") # PIN
         Entry3['validatecommand'] = (Entry3.register(controller.validatePIN),'%P')
         Entry3.grid(row=3, column=2)
 
-        Entry4 = ttk.Entry(self,width=10, show="*",validate="key") # Re enter PIN
+        Entry4 = ttk.Entry(self,width=20, show="*",validate="key") # Re enter PIN
         Entry4['validatecommand'] = (Entry4.register(controller.validatePIN),'%P')
         Entry4.grid(row=4, column=2)
-
-        button1 = ttk.Button(self, text ="Submit", command = lambda : controller.show_frame(LoginPage)) 
-        button1.grid(row = 5, column = 1, padx = 10, pady = 10)
+    
+        button1 = ttk.Button(self, text ="Submit", command = lambda : submit_account()) 
+        button1.grid(row = 6, column = 1,  padx = 10, pady = 10)
 
         button2 = ttk.Button(self, text ="Cancel", command = lambda : controller.show_frame(LoginPage)) 
-        button2.grid(row = 5, column = 2, padx = 10, pady = 10) 
+        button2.grid(row = 6, column = 2, padx = 10, pady = 10) 
+
+        def submit_account():
+            account_name = Entry2.get()
+            account_pin = Entry4.get()
+            account_email = Entry1.get()
+            account_create_date = "2021-04-15"
+            store_account(account_name, account_pin, account_email, account_create_date)
+            store_confirm("2021-04-15", "1.0")
+            print("Confirmed Value is :",confirmed.get())
+            controller.show_frame(LoginPage)
 
 class ChildPage(tk.Frame):       
     def __init__(self, parent, controller): # controller is "child" of class health_app to call its functions
@@ -383,9 +416,37 @@ class ChartPage(tk.Frame):
         button.grid(column=1, row=6)
 
     def export_pdf(self): # by this that function can be called even outside that class by <class.function>
+        # create pdf first
+        pdf_w=210
+        pdf_h=297
+        f = 0
+        child_first ="Max"
+
+        pdf = FPDF('P', 'mm', 'A4')
+        pdf.add_page()
+        pdf.set_xy(0.0,0.0)
+        pdf.set_font('Arial', 'B', 20)
+        pdf.cell(210, 20, "BMI History Report of " + child_first+ child_first+ child_first,f,1, "C") # always centered in middle of page
+        pdf.set_font('Arial', '', 12)
+        pdf.cell(210, 12, 'Please consider our legal terms and conditions you agreed on by using this app', f, 1, 'L')
+        pdf.cell(210, 12, 'Creation date: <current_date>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child First Name :		<child_first_name>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child Last Name :		<child_last_name>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child Birthday :		    <child_bday>', f, 1, 'L')
+        pdf.cell(210, 12, 'Child gender :		    <child_gender>', f, 1, 'L')
+
+        pdf.set_font('Arial', 'B', 12)
+        pdf.cell(210, 12, 'Last BMI measurement on <logfile_date>', f, 1, 'L')
+        pdf.set_font('Arial', '', 12)
+        pdf.cell(210, 12, 'Height in m:		<last logfile entry>', f, 1, 'L')
+        pdf.cell(210, 12, 'Weight in Kg:	<last logfile entry>', f, 1, 'L')
+        pdf.cell(210, 12, 'BMI calculated:	<last logfile entry>', f, 1, 'L')
+
+        pdf.image("./growthchart_example2.png",60,140,100,155)
+        pdf.output('BMI_report_child_date_V2.pdf', 'F')
         
-        # the pdf report must be created inside app and stored in specific folder ! ++++++++ open
-        pdf_file = "/BMI_report_child_date.pdf" # could include name of child account ?
+        # now export created file
+        pdf_file = "/BMI_report_child_date_V2.pdf" # could include name of child account ?
         pdf_source = os.path.realpath(os.getcwd()) + pdf_file # get working directory -> later from specific folder
                     
         file = askdirectory() # ask user for folder to store(copy) pdf report; user can then use email to send away
@@ -399,6 +460,8 @@ class ChartPage(tk.Frame):
 if __name__ == "__main__":
 
     app = health_app()
+    
+    
     app.mainloop()
 
     
