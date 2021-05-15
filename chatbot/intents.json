@@ -32,18 +32,6 @@
       "responses": ["Happy to help!", "Any time!", "My pleasure"]
     },
     {
-      "tag": "items",
-      "patterns": [
-        "Which items do you have?",
-        "What kinds of items are there?",
-        "What do you sell?"
-      ],
-      "responses": [
-        "We sell coffee and tea",
-        "We have coffee and tea"
-      ]
-    },
-    {
       "tag": "payments",
       "patterns": [
         "Do you take credit cards?",
@@ -57,32 +45,46 @@
       ]
     },
     {
-      "tag": "bmi",
+      "tag": "bmi_use",
       "patterns": [
         "How to use the BMI tracker?",
-        "What means BMI?",
+        "When should I use it?",
         "When I have to use the BMI check?",
-        "What is the BMI good for?",
-        "Can I send the BMI history to somebody?"
+        "How often should I measure the BMI ?",
+        "Can I use this app for adults as well?"
       ],
       "responses": [
-        "Use the BMI Tracker to follow the bmi index of your child/ren",
-        "BMI stands for body mass index, more Info here (Link)",
-        "You need to use the BMI Tracker on a regular base, see here (Link)",
-        "The development of BMI over time shows the success of your health and weight condition",
+        "Use the BMI Tracker to follow the bmi index of your child/ren only",
+        "You need to use the BMI Tracker on a regular base, see here (Link)"
+      ]
+    },
+    {
+      "tag": "bmi_export",
+      "patterns": [
+        "Can I track the BMI results?",
+        "Can I send the BMI history to somebody?",
+        "Can I share my BMI results?",
+        "How to export and send the BMI results?"
+      ],
+      "responses": [
         "You can export the BMI history and then send it e.g. by email"
       ]
     },
     {
-      "tag": "funny",
+      "tag": "bmi_what",
       "patterns": [
-        "Tell me a joke!",
-        "Tell me something funny!",
-        "Do you know a joke?"
+        "Tell me about BMI",
+        "I like to learn about BMI",
+        "What should I know about BMI",
+        "What means BMI?",
+        "Are there different BMI in the world?",
+        "What is the BMI good for?",
+        "Why I have to measure the BMI?",
+        "What is the intention of measuring BMI?"
       ],
       "responses": [
-        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-        "What did the buffalo say when his son left for college? Bison."
+        "BMI stands for body mass index, more Info here (https://en.wikipedia.org/wiki/Body_mass_index)",
+        "The development of BMI over time shows the success of your activities to improve health condition"
       ]
     }
   ]
