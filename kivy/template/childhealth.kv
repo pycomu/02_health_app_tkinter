@@ -1,0 +1,47 @@
+#:import utils kivy.utils
+#:include homescreen.kv
+#:include home2screen.kv
+
+Screen:
+    MDToolbar :
+        id: titlename
+        title : 'Child Health App'        
+        md_bg_color: app.theme_cls.primary_color
+        left_action_items : [["menu", lambda x : nav_drawer.toggle_nav_drawer()]]
+        right_action_items: [["dots-vertical", lambda x: app.callback(x)]]
+        elevation : 10
+        pos_hint: {"top": 1, "left": 1}
+        size_hint: 1, .1
+
+    NavigationLayout :
+        ScreenManager :
+            id: screen_manager
+            size_hint: 1, 1
+            pos_hint: {"top": 1, "left": 1}
+            HomeScreen:
+                name: "home_screen"
+                id: home_screen
+            Home2Screen:
+                name: "home2_screen"
+                id: home2_screen
+        MDNavigationDrawer:
+            id : nav_drawer
+            BoxLayout :
+                orientation : 'vertical'
+                ScrollView :
+                    MDList :
+                        OneLineIconListItem :
+                            text : 'Home'
+                            on_release: 
+                                nav_drawer.set_state("close")
+                                screen_manager.current = "home_screen"
+                            IconLeftWidget:
+                                icon: 'pencil'
+                        OneLineIconListItem :
+                            text : 'Home 2'
+                            on_release: 
+                                nav_drawer.set_state("close")
+                                screen_manager.current = "home2_screen"
+                            IconLeftWidget:
+                                icon: 'pencil'
+        
