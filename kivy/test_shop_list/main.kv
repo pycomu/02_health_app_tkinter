@@ -1,0 +1,30 @@
+<ListItem@OneLineAvatarIconListItem>:
+    ItemCheckBox:
+
+<MainLayout@BoxLayout>
+    name: "lists"
+    orientation: "vertical"
+
+    MDToolbar:
+        title:"Shopping List"
+        md_bg_color: app.theme_cls.primary_color
+        elevation: 10
+
+    BoxLayout:
+        orientation:'vertical'
+        padding: dp(48)
+        spacing: 10
+        
+        MDTextField:
+            id: new_item
+            hint_text: "Enter new item here"
+            helper_text_mode: "on_focus"
+            
+        MDFillRoundFlatButton:
+            text: "Add New Item"
+            pos_hint: {"center_x": .5}
+            on_press: app.add_item()
+            
+        ScrollView:
+            MDList:
+                id: list_item
