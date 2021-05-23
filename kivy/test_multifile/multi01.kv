@@ -1,0 +1,16 @@
+
+<Multi01>:
+    MDFloatLayout:
+        orientation: 'vertical'
+        MDLabel:
+            id: label_text 
+            text: "Press the button"
+            halign: "center"
+            pos_hint:{'center_x': 0.5, "center_y":0.8}
+        
+        MDFillRoundFlatButton:
+            text: "Start Search"
+            size_hint_x: 0.8
+            size_hint_y: 0.1
+            pos_hint:{'center_x': 0.5, "center_y":0.5}
+            on_press: root.callback()
